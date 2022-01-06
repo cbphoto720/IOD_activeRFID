@@ -10,3 +10,10 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
   - zoom
   - Import coastlines
   - update with GPS coords
+
+###### Road map
+- [ ] Layout
+- [ ] GPS map location (read GPS serial data)
+- [ ] import Coastline map (import kmz file)
+- [ ] Signal strength (read antenna serial data)
+- [ ] combine gps and signal strength to get a heatmap of signal intensity
