@@ -10,7 +10,7 @@ fid = fopen('taglist.txt');
 C = textscan(fid,'%s');
 TagID = hex2dec(C{1});
 fclose(fid);
-SerialObj = serial('COM6');    % define serial port
+SerialObj = serial('COM4');    % define serial port
 SerialObj.BaudRate=9600;               % define baud rate
 %SerialObj.TimerPeriod=0.1;
 SerialObj.Terminator=']';
