@@ -17,7 +17,7 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
  - [ ] navigation map using mapping toolbox
  - [ ] For saving data in the same folder as the installed app:
 
-<code>files = matlab.apputil.getInstalledAppInfo;</code>
+<code>files = matlab.apputil.getInstalledAppInfo;</code>\
 <code>[path,~,~] = fileparts(files(1).location)</code>
 
 # Notes
