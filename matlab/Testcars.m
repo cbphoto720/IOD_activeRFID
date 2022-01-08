@@ -4,9 +4,9 @@ COM="COM4";
 % Import tag list
 fid = fopen('taglist.txt');
 C = textscan(fid,'%s');
-tagID = hex2dec(C{1});
+tagIDlist = hex2dec(C{1});
 fclose(fid);
-num_tags=length(tagID);
+num_tags=length(tagIDlist);
 clear C fid ans
 
 % Configure Serial
@@ -14,16 +14,7 @@ Antenna=serialport(COM,9600);
 configureTerminator(Antenna,93); % 93 ascii ]
 
 % Read Serial
-a=readline(Antenna);
-a=a{1}(2:end);
-
-% Interpret Serial & save data
-[A,num_elements] = sscanf(a,'%2x%6x01',2); % parse hex to RSI & tag ID
-disp(A)
-index = A(2) - tagID(1) + 1; %matlab arrays are one based,not zero based
-if num_elements==2 && index <= num_tags && index > 0
-    disp('READ!')
-end
+[tagID,RSSI] = readARFID(Antenna,tagIDlist, num_tags)
 
 %% Create Data folder and datalog
 
@@ -36,15 +27,24 @@ filename=['datalog','_',dtstr,'.txt'];
 filename=convertCharsToStrings(filename); %convert to string
 outpath=fullfile('data',filename);
 
-% open datalog
-[fid, msg]=fopen(outpath,'a');
-if fid < 0
-  error('Failed to open file "%s" because: "%s"', filename, msg);
+% create datalog
+if ~isfile(outpath) % check if file does not exist
+    [fid, msg]=fopen(outpath,'w');
+    if fid < 0
+        error('Failed to open file "%s" because: "%s"', filename, msg);
+    end
+    writecount=fwrite(fid,'timestamp,tagID,RSSI'); %write headers
+else % open file if it exists
+    [fid, msg]=fopen(outpath,'a');
+    if fid < 0
+      error('Failed to open file "%s" because: "%s"', filename, msg);
+    end
 end
 
-% write datait
+% write data
 timestamp=datestr(datetime('now'),30); %'yyyymmddTHHMMSS' (ISO 8601)
-output=[newline,timestamp];
+[tagID,RSSI] = readARFID(Antenna,tagIDlist, num_tags);
+output=[newline,timestamp,',',sprintf('%d',tagID),',',sprintf('%d',RSSI)];
 writecount=fwrite(fid,output);
 
 % close datalog
@@ -52,25 +52,31 @@ msg=fclose(fid);
 if msg < 0
   error('Failed to close file "%s"', filename);
 end
-clear fid msg dtstr
+clear msg dtstr
 
-%% Write table method
+% %% Speed test
+% 
+% % open datalog
+% [fid, msg]=fopen(outpath,'a');
+% if fid < 0
+%   error('Failed to open file "%s" because: "%s"', filename, msg);
+% end
+% 
+% % write data loop
+% for i=1:1000
+%     timestamp=datestr(datetime('now'),30); %'yyyymmddTHHMMSS' (ISO 8601)
+%     [tagID,RSSI] = readARFID(Antenna,tagIDlist, num_tags);
+%     output=[newline,timestamp,',',sprintf('%d',tagID),',',sprintf('%d',RSSI)];
+%     writecount=fwrite(fid,output);
+% end
+% 
+% % close datalog
+% msg=fclose(fid);
+% if msg < 0
+%   error('Failed to close file "%s"', filename);
+% end
+% % clear fid msg dtstr
 
-% Create data table
-timestamp={datestr(datetime('now'),30)}; %'yyyymmddTHHMMSS' (ISO 8601);
-tagID={nan};
-RSI=tagID;
-GPS=tagID;
-heading=tagID;
-flag=logical(0);
-T=table(timestamp,tagID,RSI,GPS,heading,flag);
-
-% write data table
-timestamp=datestr(datetime('now'),30); %'yyyymmddTHHMMSS' (ISO 8601)
-% [tagID,RSI]= 
-GPS=nan;
-heading=nan;
-flag=logical(0);
 
 %% Read data from datalog
 
@@ -84,6 +90,8 @@ end
 test=textscan(fid,'%s', 'Delimiter', '');
 test=test{1};
 test2=sscanf(test{end},'%8dT%6d',2)
+test3=textscan(test{end},'%s', 'Delimiter', ',');
+test3=test3{1};
 
 %close datalog
 msg=fclose(fid);
