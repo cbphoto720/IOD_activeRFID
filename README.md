@@ -7,8 +7,11 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 # Road Map
 - [x] Research Antenna
 - [x] test script to read serial data
-- [ ] log serial data from test script into OUT(date).txt file (use fopen( ,'a') 'a' for append
-- [ ] read OUT(date).txt to create pcolor map (use timestamp to sync with GPS, or use another serial read to grab position)
+- [x] log serial data from test script into OUT(date).txt file (use fopen( ,'a') 'a' for append
+- [ ] Start logging inreach GPS chip with serial read
+- [ ] Start GUI layout and mapping functionality
+- [ ] point map north and have it track user with a "snail trail" gps line of previous points.  (color points based on RSSI for easy mapping start)
+- [ ] read OUT(date).txt to create a single point with colored RSSI intenstiy, log many points to create a map (use timestamp to sync with GPS, or use another serial read to grab position)
 - [ ] Use short range omnidirectional DIY coil antenna for low power signal  to get minimal signal unless close to tag
 - [ ] display message "tracking cobble ID: XXXXX" once signal has been high for some criteria, Map display pcolor of signal strength.  (average signal over area and gps coord)
 #### other features
