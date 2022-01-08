@@ -19,6 +19,7 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 
 <code>files = matlab.apputil.getInstalledAppInfo;</code>\
 <code>[path,~,~] = fileparts(files(1).location)</code>
+ - [ ] midnight rollover handling
 
 # Notes
 ## Properties
