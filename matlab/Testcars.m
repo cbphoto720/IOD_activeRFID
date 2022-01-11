@@ -11,7 +11,7 @@ clear C fid ans
 
 % Configure Serial
 Antenna=serialport(COM,9600);
-configureTerminator(Antenna,93); % 93 ascii ]
+configureTerminator(Antenna,93); % 93 ascii = ']'
 
 % Read Serial
 [tagID,RSSI] = readARFID(Antenna,tagIDlist, num_tags)
@@ -99,3 +99,20 @@ if msg < 0
   error('Failed to close file "%s"', filename);
 end
 clear fid msg dtstr
+
+%% Mapping tests
+clear all
+% latSeattle = 47.62;
+% lonSeattle = -122.33;
+% latAnchorage = 61.20;
+% lonAnchorage = -149.9;
+
+GPScord=[32.927981236100734, -117.25985543852305];
+mapoffset.val=0.001;
+mapoffset.lat=[GPScord(1)-mapoffset.val,GPScord(1)+mapoffset.val];
+mapoffset.lon=[GPScord(2)-mapoffset.val,GPScord(2)+mapoffset.val];
+
+
+gs=geoscatter(GPScord(1),GPScord(2),'*');
+geolimits(mapoffset.lat,mapoffset.lon)
+geobasemap topographic
