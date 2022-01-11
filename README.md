@@ -8,8 +8,13 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - [x] Research Antenna
 - [x] test script to read serial data
 - [x] log serial data from test script into OUT(date).txt file (use fopen( ,'a') 'a' for append
+- [ ] configure readserial as a callback function with BytesAvailableFcn.  Then practice using a timer with a callback for logging data in bigger chunks.  (these chunks of history will hold values in memory rather than logging unessesary RSSI values when seraching for a cobble)
+- [ ] intergrate readserial functionality into cobblefinder GUI to plot results
+- [ ] create a simple export from matlab compiler to check functionality and see if you can measure performance on a toughbook
+
+Next Phase -> Intergrate GPS 
 - [ ] Start logging inreach GPS chip with serial read
-- [ ] Start GUI layout and mapping functionality
+- [ ] Includ mapping functionality
 - [ ] point map north and have it track user with a "snail trail" gps line of previous points.  (color points based on RSSI for easy mapping start)
 - [ ] read OUT(date).txt to create a single point with colored RSSI intenstiy, log many points to create a map (use timestamp to sync with GPS, or use another serial read to grab position)
 - [ ] Use short range omnidirectional DIY coil antenna for low power signal  to get minimal signal unless close to tag
@@ -23,8 +28,12 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 <code>files = matlab.apputil.getInstalledAppInfo;</code>\
 <code>[path,~,~] = fileparts(files(1).location)</code>
  - [ ] midnight rollover handling
+ - [ ] continuous log of RSSI will only display heatmap for 1 tag at a time, but data will be recorded for any signal recieved
 
 # Notes
+## Questions for Brian
+- [ ] 1/10/22 in test.m, your callback functions update a global variable.  Is this a product of using a callback function on the BytesAvailableFcn or is there more to it? 
+
 ## Properties
 Max RSI detected with Slender III antenna: 180
 
