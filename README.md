@@ -9,6 +9,9 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - [x] test script to read serial data
 - [x] log serial data from test script into OUT(date).txt file (use fopen( ,'a') 'a' for append
 - [ ] configure readserial as a callback function with BytesAvailableFcn.  Then practice using a timer with a callback for logging data in bigger chunks.  (these chunks of history will hold values in memory rather than logging unessesary RSSI values when seraching for a cobble)
+- [ ] [BytesAvailableFcn](https://www.mathworks.com/help/instrument/bytesavailablefcn.html)
+- [ ] [timer](https://www.mathworks.com/help/matlab/matlab_prog/use-a-matlab-timer-object.html)
+- [ ] [switch](https://www.mathworks.com/help/matlab/ref/switch.html)
 - [ ] intergrate readserial functionality into cobblefinder GUI to plot results
 - [ ] create a simple export from matlab compiler to check functionality and see if you can measure performance on a toughbook
 
