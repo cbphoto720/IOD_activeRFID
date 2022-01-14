@@ -32,6 +32,12 @@ Next Phase -> Intergrate GPS
 <code>[path,~,~] = fileparts(files(1).location)</code>
  - [ ] midnight rollover handling
  - [ ] continuous log of RSSI will only display heatmap for 1 tag at a time, but data will be recorded for any signal recieved
+# Variables Tree
+#### Global Variables
+- Timestamp
+- TagID & RSSI (for directional & omni-dir antenna)
+- GPS coord
+- Flag index {length(num_tags)} (boolean values that notate recorded cobbles)
 
 # Notes
 ## Questions for Brian
@@ -68,3 +74,4 @@ Many of the directional 433 MHz antenna I have found are oriented toward high po
  - [fscanf](https://www.mathworks.com/help/matlab/ref/fscanf.html) read data from files
  - geodensityplot
  - [serialportlist](https://www.mathworks.com/help/matlab/ref/serialportlist.html#d123e1295884) serialportlist("available")=open ports
+
