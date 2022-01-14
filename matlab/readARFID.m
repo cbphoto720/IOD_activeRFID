@@ -10,7 +10,7 @@ RSSI_OFFSET = 255;  %RSSI values are inverse to power
 a=readline(Antenna);
 a=a{1}(2:end);
 
-% Interpret Serial & save data
+% Interpret Serial & output data
 [A,num_elements] = sscanf(a,'%2x%6x01',2); % parse hex to RSI & tag ID
 index = A(2) - tagIDlist(1) + 1; %matlab arrays are one based,not zero based
 if num_elements==2 && index <= num_tags && index > 0
