@@ -137,8 +137,17 @@ geolimits(mapoffset.lat,mapoffset.lon)
 geobasemap topographic
 
 %% multi mapping tests
-for i=1:10
+test.t1=[];
+test.t2=[];
+for i=1:100
     c=i*0.000001;
-    GPScord=GPScord+c;
-
+    GPScord(1)=GPScord(1)+c;
+    tic
+    CallbackGPS('','',0.001)
+    T(i)=toc;
 end
+
+%%
+figure
+histogram(T)
+mean(T)
