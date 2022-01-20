@@ -121,10 +121,11 @@ histogram(Returns{:,:})
 
 %% Mapping tests _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 %% Load KML
+MOPkml=kml2struct('MOPs_SD_County.kml')
+iii=find(strcmp({MOPkml.Geometry}, 'Line')==1) % remove excess points
+MOPkml=MOPkml(iii)
 
-
-
-%% Mapping
+%% Mapping tests
 global GPScord
 
 GPScord=[32.927981236100734, -117.25985543852305];
@@ -132,26 +133,48 @@ mapoffset.val=0.001;
 mapoffset.lat=[GPScord(1)-mapoffset.val,GPScord(1)+mapoffset.val];
 mapoffset.lon=[GPScord(2)-mapoffset.val,GPScord(2)+mapoffset.val];
 
+figure
+
 % n=input('G or P: ','s')
 n='p';
 switch n
     case 'g' % Geomap
-        figure
+        t.g=tic;
         geoscatter(GPScord(1),GPScord(2),150,'blue','x','LineWidth',1);
         hold on
         geoscatter(GPScord(1),GPScord(2),250,'blue','o','LineWidth',1);
 
         geolimits(mapoffset.lat,mapoffset.lon)
         geobasemap topographic
+        toc(t.g)
     case 'p' % fast plot
+        t.p=tic;
         scatter(GPScord(2),GPScord(1),150,'blue','x','LineWidth',1);
         hold on
         scatter(GPScord(2),GPScord(1),250,'blue','o','LineWidth',1);
 
         ylim(mapoffset.lat)
         xlim(mapoffset.lon)
+        toc(t.p)
 end
 
+
+% MOP code
+moprange=[570:600];
+switch n
+    case 'g'
+        hold on
+        for i=moprange
+            geoplot(MOPkml(i).Lat,MOPkml(i).Lon,'red')
+        end
+    case 'p'
+        hold on
+        for i=moprange
+            plot(MOPkml(i).Lon,MOPkml(i).Lat,'red')
+        end
+end
+
+clear n
 %% moving mapping tests
 test.t1=[];
 test.t2=[];
