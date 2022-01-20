@@ -120,11 +120,11 @@ Returns=test4(ismember(test4.tagID,cobbleID),"RSSI");
 histogram(Returns{:,:})
 
 %% Mapping tests _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
-clear all
-% latSeattle = 47.62;
-% lonSeattle = -122.33;
-% latAnchorage = 61.20;
-% lonAnchorage = -149.9;
+%% Load KML
+
+
+
+%% Mapping
 global GPScord
 
 GPScord=[32.927981236100734, -117.25985543852305];
@@ -132,11 +132,27 @@ mapoffset.val=0.001;
 mapoffset.lat=[GPScord(1)-mapoffset.val,GPScord(1)+mapoffset.val];
 mapoffset.lon=[GPScord(2)-mapoffset.val,GPScord(2)+mapoffset.val];
 
-gs=geoscatter(GPScord(1),GPScord(2),'*');
-geolimits(mapoffset.lat,mapoffset.lon)
-geobasemap topographic
+% n=input('G or P: ','s')
+n='p';
+switch n
+    case 'g' % Geomap
+        figure
+        geoscatter(GPScord(1),GPScord(2),150,'blue','x','LineWidth',1);
+        hold on
+        geoscatter(GPScord(1),GPScord(2),250,'blue','o','LineWidth',1);
 
-%% multi mapping tests
+        geolimits(mapoffset.lat,mapoffset.lon)
+        geobasemap topographic
+    case 'p' % fast plot
+        scatter(GPScord(2),GPScord(1),150,'blue','x','LineWidth',1);
+        hold on
+        scatter(GPScord(2),GPScord(1),250,'blue','o','LineWidth',1);
+
+        ylim(mapoffset.lat)
+        xlim(mapoffset.lon)
+end
+
+%% moving mapping tests
 test.t1=[];
 test.t2=[];
 for i=1:100
@@ -147,7 +163,21 @@ for i=1:100
     T(i)=toc;
 end
 
-%%
+%% statistics
 figure
 histogram(T)
 mean(T)
+
+%% fastplot
+global GPScord
+
+GPScord=[32.927981236100734, -117.25985543852305];
+mapoffset.val=0.001;
+mapoffset.lat=[GPScord(1)-mapoffset.val,GPScord(1)+mapoffset.val];
+mapoffset.lon=[GPScord(2)-mapoffset.val,GPScord(2)+mapoffset.val];
+
+scatter(GPScord(2),GPScord(1),150,'blue','x','LineWidth',1);
+hold on
+scatter(GPScord(2),GPScord(1),250,'blue','o','LineWidth',1);
+ylim(mapoffset.lat)
+xlim(mapoffset.lon)
