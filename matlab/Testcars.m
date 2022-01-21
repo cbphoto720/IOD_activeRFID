@@ -121,9 +121,9 @@ histogram(Returns{:,:})
 
 %% Mapping tests _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 %% Load KML
-MOPkml=kml2struct('MOPs_SD_County.kml')
-iii=find(strcmp({MOPkml.Geometry}, 'Line')==1) % remove excess points
-MOPkml=MOPkml(iii)
+MOPkml=kml2struct('MOPs_SD_County.kml');
+iii=find(strcmp({MOPkml.Geometry}, 'Line')==1); % remove excess points
+MOPkml=MOPkml(iii);
 
 %% Mapping tests
 global GPScord
@@ -136,7 +136,7 @@ mapoffset.lon=[GPScord(2)-mapoffset.val,GPScord(2)+mapoffset.val];
 figure
 
 % n=input('G or P: ','s')
-n='p';
+n='g';
 switch n
     case 'g' % Geomap
         t.g=tic;
@@ -179,7 +179,7 @@ clear n
 test.t1=[];
 test.t2=[];
 for i=1:100
-    c=i*0.000001;
+    c=0.000001;
     GPScord(1)=GPScord(1)+c;
     tic
     CallbackGPS('','',0.001)
@@ -188,8 +188,12 @@ end
 
 %% statistics
 figure
+subplot(211)
 histogram(T)
 mean(T)
+
+subplot(212)
+plot(T)
 
 %% fastplot
 global GPScord
