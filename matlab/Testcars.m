@@ -130,26 +130,36 @@ clear importkml iii
 
 global GPScord
 GPScord=[32.927981236100734, -117.25985543852305];
-%% Mapping tests
-CallbackGPS('','',0.001,'g','mop',[570,600])
-% CallbackGPS('','',0.001,'g')
+
+
+% Initialize Timer moving callback
+
+% fixed timer
+% tmr=timer('ExecutionMode', 'FixedRate', 'Period', 1, ...
+%     'TimerFcn', "CallbackGPS('','',0.001,'g','mop',[570,600]);")
+% Speed timer
+tmr=timer('ExecutionMode', 'fixedSpacing', ...
+    'TimerFcn', "CallbackGPS('','',0.001,'g','mop',[570,600]);", ...
+    'StopFcn',"disp('GPS timer stopped')")
+
+start(tmr)
+%% delete timer
+%stop(timerfind) % stop all timers
+stop(tmr)
+delete(tmr)
+clear tmr
+
+%% Single callback map test
+CallbackGPS('','',0.001,'g','mop',[570,600]);
+% CallbackGPS('','',0.001,'g') % no mops
 
 %% moving mapping tests
 for i=1:100
     c=0.0001;
     GPScord(1)=GPScord(1)+c;
-    pause(0.5)
+    pause(0.1)
 end
-
-%% Timer moving callback
-
-tmr=timer('ExecutionMode', 'FixedRate', 'Period', 1, ...
-    'TimerFcn', {@CallbackGPS,'','',0.001,'g','mop',[570,600]})
-start(tmr)
-%% delete timer
-stop(tmr)
-delete(tmr)
-clear tmr
+clear i c
 
 %% statistics
 figure
@@ -159,12 +169,3 @@ mean(T)
 
 subplot(212)
 plot(T)
-
-%% Varargin tests
-varargin={'one','two','mop',[570,600]};
-
-a=find(strcmp(varargin, 'mop')==1);
-
-moprange=varargin{a+1};
-isa(moprange,'double')
-all(size(moprange)==[1,2])
