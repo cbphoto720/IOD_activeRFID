@@ -1,13 +1,12 @@
-function CallbackGPS(~,~,mapoffset,plotmode,varargin)
+function CallbackGPS(src,~,mapoffset,plotmode,varargin)
 %Update GPS map on CobbleFinder GUI *Optional arguments: ('mop','snail')
 %{
     Optional arguments:
-        - 'mop', [SMOP , NMOP] - display mop lines in range [SMOP,NMOP]
+        - 'mop' - display mop lines
         - 'snail' - display snail trails (previous GPS line)
 %}
     global GPScord
-    global MOPkml
-    clf
+
     % calc map limits
     lat=[GPScord(1)-mapoffset,GPScord(1)+mapoffset];
     lon=[GPScord(2)-mapoffset,GPScord(2)+mapoffset];
@@ -33,21 +32,17 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
     %% Optional arguments (varargin)
     % 'mop' - display mop lines
     if any(strcmp(varargin, 'mop')==1)
-        moprange=varargin{find(strcmp(varargin, 'mop')==1)+1};
-        if isa(moprange,'double') && all(size(moprange)==[1,2]) %check for MOP range spec
-        else
-            msg=sprintf('optional argument ''mop'' must be followed by mop range [SMOP, NMOP]')
-            error(msg)
-        end
+        a=find(strcmp(varargin, 'mop')==1)
+        moprange=varargin{a+1}
         switch plotmode
             case 'g'
                 hold on
-                for i=moprange(1):moprange(2)
+                for i=moprange
                     geoplot(MOPkml(i).Lat,MOPkml(i).Lon,'red')
                 end
             case 'p'
                 hold on
-                for i=moprange(1):moprange(2)
+                for i=moprange
                     plot(MOPkml(i).Lon,MOPkml(i).Lat,'red')
                 end
         end
@@ -57,7 +52,5 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
     if any(strcmp(varargin, 'snail')==1)
         disp('snail working')
     end
-
-    hold off
     drawnow()
 end

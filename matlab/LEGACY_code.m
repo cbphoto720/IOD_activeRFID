@@ -43,15 +43,50 @@ toc
 % even using fopen,fwrite,fclose with safety check if 
 % staments was 0.003235 s..  
 % the speed discrepancy only increases when reading multiple lines of data
-%% ________________________________________________________________________
-% Find numbers in range
 
-r = [1, 10];
-xRange = [5 2 1 -1 5 67 3];
-ii = xRange >= r(1) & xRange <= r(2)
-out = xRange;
-out(~ii) = nan;
+%% Mapping test
+global GPScord
 
-% Find a struct field
-a.b.c = 1;
-isfield(a.b,'c')
+
+figure
+
+% n=input('G or P: ','s')
+n='g';
+switch n
+    case 'g' % Geomap
+        t.g=tic;
+        geoscatter(GPScord(1),GPScord(2),150,'blue','x','LineWidth',1);
+        hold on
+        geoscatter(GPScord(1),GPScord(2),250,'blue','o','LineWidth',1);
+
+        geolimits(mapoffset.lat,mapoffset.lon)
+        geobasemap topographic
+        toc(t.g)
+    case 'p' % fast plot
+        t.p=tic;
+        scatter(GPScord(2),GPScord(1),150,'blue','x','LineWidth',1);
+        hold on
+        scatter(GPScord(2),GPScord(1),250,'blue','o','LineWidth',1);
+
+        ylim(mapoffset.lat)
+        xlim(mapoffset.lon)
+        toc(t.p)
+end
+
+
+% MOP code
+moprange=[570:600];
+switch n
+    case 'g'
+        hold on
+        for i=moprange
+            geoplot(MOPkml(i).Lat,MOPkml(i).Lon,'red')
+        end
+    case 'p'
+        hold on
+        for i=moprange
+            plot(MOPkml(i).Lon,MOPkml(i).Lat,'red')
+        end
+end
+
+clear n
