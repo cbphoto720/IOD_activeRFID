@@ -5,8 +5,12 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
         - 'mop', [SMOP , NMOP] - display mop lines in range [SMOP,NMOP]
         - 'snail' - display snail trails (previous GPS line)
 %}
+    tic
     global GPScord
     global MOPkml
+    global a %test
+    global b %test
+
     clf
     % calc map limits
     lat=[GPScord(1)-mapoffset,GPScord(1)+mapoffset];
@@ -42,14 +46,16 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
         switch plotmode
             case 'g'
                 hold on
-                for i=moprange(1):moprange(2)
-                    geoplot(MOPkml(i).Lat,MOPkml(i).Lon,'red')
-                end
+%                 for i=moprange(1):moprange(2)
+%                     geoplot(MOPkml(i).Lat,MOPkml(i).Lon,'red')
+%                 end
+                geoplot(b,a,'red')
             case 'p'
                 hold on
-                for i=moprange(1):moprange(2)
-                    plot(MOPkml(i).Lon,MOPkml(i).Lat,'red')
-                end
+%                 for i=moprange(1):moprange(2)
+%                     plot(MOPkml(i).Lon,MOPkml(i).Lat,'red')
+%                 end
+                plot(a,b,'red')
         end
     end
 
@@ -60,4 +66,5 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
 
     hold off
     drawnow()
+    toc
 end

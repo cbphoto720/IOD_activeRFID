@@ -128,36 +128,52 @@ global MOPkml
 MOPkml=importkml(iii);
 clear importkml iii
 
+% Convert struct to matrix for graphing
+global a
+global b
+a=[MOPkml.Lon];
+a=[a;nan(1,size(a,2))];
+a=a(:);
+
+b=[MOPkml.Lat];
+b=[b;nan(1,size(b,2))];
+b=b(:);
+
 global GPScord
 GPScord=[32.927981236100734, -117.25985543852305];
 
 
-% Initialize Timer moving callback
+%% Initialize Timer moving callback
 
-% fixed timer
-% tmr=timer('ExecutionMode', 'FixedRate', 'Period', 1, ...
-%     'TimerFcn', "CallbackGPS('','',0.001,'g','mop',[570,600]);")
-% Speed timer
-tmr=timer('ExecutionMode', 'fixedSpacing', ...
-    'TimerFcn', "CallbackGPS('','',0.001,'g','mop',[570,600]);", ...
+% fixed timer (FASTER)
+tmr=timer('ExecutionMode', 'FixedRate', 'Period', 0.12, ...
+    'TimerFcn', "CallbackGPS('','',0.001,'p','mop',[1,1000]);", ...
     'StopFcn',"disp('GPS timer stopped')")
+% Speed timer
+% tmr=timer('ExecutionMode', 'fixedSpacing', ...
+%     'TimerFcn', "CallbackGPS('','',0.001,'p','mop',[570,600]);", ...
+%     'StopFcn',"disp('GPS timer stopped')")
 
+%% Start timer func
 start(tmr)
+
 %% delete timer
-%stop(timerfind) % stop all timers
+% stop(timerfind) % stop all timers
 stop(tmr)
+
+%%
 delete(tmr)
 clear tmr
 
 %% Single callback map test
-CallbackGPS('','',0.001,'g','mop',[570,600]);
+CallbackGPS('','',0.001,'p','mop',[570,600]);
 % CallbackGPS('','',0.001,'g') % no mops
 
 %% moving mapping tests
 for i=1:100
-    c=0.0001;
+    c=0.000001;
     GPScord(1)=GPScord(1)+c;
-    pause(0.1)
+    pause(0.01)
 end
 clear i c
 
@@ -169,3 +185,21 @@ mean(T)
 
 subplot(212)
 plot(T)
+
+%% Struct test
+% cell2mat(struct2cell(MOPkml.Lon))
+global a
+global b
+a=[MOPkml.Lon];
+a=[a;nan(1,size(a,2))];
+a=a(:);
+
+b=[MOPkml.Lat];
+b=[b;nan(1,size(b,2))];
+b=b(:);
+
+%% nanplot test
+A = [1 3 5; 2 4 6; NaN(1, 3)];
+A = A(:);
+B = A;
+h = plot(A, B);

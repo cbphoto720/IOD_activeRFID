@@ -51,6 +51,7 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - %flag - an important note
 - %speed - a potential improvement
 - %stats - code purely to asses the performance of other features
+- %test - a temporary element
 
 
 
