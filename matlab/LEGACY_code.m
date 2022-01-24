@@ -90,3 +90,11 @@ switch n
 end
 
 clear n
+
+%% geometry checker
+
+Geometry='Linestring';
+supported_geo={'Point' , 'Linestring' , 'Polygon' , 'MultiPoint' , ...
+    'MultiLineString' , 'MultiPolygon' , 'MultiGeometry'};
+
+strcmp(supported_geo,Geometry)
