@@ -121,23 +121,28 @@ histogram(Returns{:,:})
 
 %% Mapping tests _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 %% Load KML
-importkml=kml2struct('MOPs_SD_County.kml');
-iii=find(strcmp({importkml.Geometry}, 'Line')==1); % remove excess points
+% importkml=kml2struct('MOPs_SD_County.kml');
+% iii=strcmp({importkml.Geometry}, 'Line')==1; % remove excess points
+% 
+% global MOPkml
+% MOPkml=importkml(iii);
+% % clear importkml iii
+% 
+% % Convert struct to matrix for graphing
+% global a
+% global b
+% a=[MOPkml.Lon];
+% a=[a;nan(1,size(a,2))];
+% a=a(:);
+% 
+% b=[MOPkml.Lat];
+% b=[b;nan(1,size(b,2))];
+% b=b(:);
 
-global MOPkml
-MOPkml=importkml(iii);
-clear importkml iii
-
-% Convert struct to matrix for graphing
+%% Initialize MOP lines
 global a
 global b
-a=[MOPkml.Lon];
-a=[a;nan(1,size(a,2))];
-a=a(:);
-
-b=[MOPkml.Lat];
-b=[b;nan(1,size(b,2))];
-b=b(:);
+[a,b]=MOPelementreducer('MOPs_SD_County.kml');
 
 global GPScord
 GPScord=[32.927981236100734, -117.25985543852305];
@@ -146,22 +151,25 @@ GPScord=[32.927981236100734, -117.25985543852305];
 %% Initialize Timer moving callback
 
 % fixed timer (FASTER)
-tmr=timer('ExecutionMode', 'FixedRate', 'Period', 0.12, ...
-    'TimerFcn', "CallbackGPS('','',0.001,'p','mop',[1,1000]);", ...
-    'StopFcn',"disp('GPS timer stopped')")
-% Speed timer
-% tmr=timer('ExecutionMode', 'fixedSpacing', ...
-%     'TimerFcn', "CallbackGPS('','',0.001,'p','mop',[570,600]);", ...
-%     'StopFcn',"disp('GPS timer stopped')")
-
+n='p'
+switch n
+    case 'g'
+        tmr=timer('ExecutionMode', 'FixedRate', 'Period', 0.5, ...
+            'TimerFcn', "CallbackGPS('','',0.001,'g','mop',[1,1000]);", ...
+            'StopFcn',"disp('GPS timer stopped')")
+    case 'p'
+        tmr=timer('ExecutionMode', 'FixedRate', 'Period', 0.12, ...
+            'TimerFcn', "CallbackGPS('','',0.001,'p','mop',[1,1000]);", ...
+            'StopFcn',"disp('GPS timer stopped')")
+end
 %% Start timer func
 start(tmr)
 
-%% delete timer
+%% Stop timer
 % stop(timerfind) % stop all timers
 stop(tmr)
 
-%%
+%% Delete timer(reset)
 delete(tmr)
 clear tmr
 
@@ -170,9 +178,9 @@ CallbackGPS('','',0.001,'p','mop',[570,600]);
 % CallbackGPS('','',0.001,'g') % no mops
 
 %% moving mapping tests
-for i=1:100
+for i=1:500
     c=0.000001;
-    GPScord(1)=GPScord(1)+c;
+    GPScord(1)=GPScord(1)-c;
     pause(0.01)
 end
 clear i c
@@ -197,9 +205,3 @@ a=a(:);
 b=[MOPkml.Lat];
 b=[b;nan(1,size(b,2))];
 b=b(:);
-
-%% nanplot test
-A = [1 3 5; 2 4 6; NaN(1, 3)];
-A = A(:);
-B = A;
-h = plot(A, B);
