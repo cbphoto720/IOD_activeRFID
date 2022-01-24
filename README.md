@@ -89,3 +89,4 @@ DIY options
  - [fclose](https://www.mathworks.com/help/matlab/ref/fclose.html) close file or serial obj
  - [fscanf](https://www.mathworks.com/help/matlab/ref/fscanf.html) read data from files
  - [serialportlist](https://www.mathworks.com/help/matlab/ref/serialportlist.html#d123e1295884) serialportlist("available")=open ports
+ - [strcmp(A , B)]() a faster version of find() to compare string to a cell { }
