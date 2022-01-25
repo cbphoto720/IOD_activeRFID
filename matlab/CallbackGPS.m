@@ -2,16 +2,31 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
 %Update GPS map on CobbleFinder GUI *Optional arguments: ('mop','snail')
 %{
     Optional arguments:
-        - 'mop', [SMOP , NMOP] - display mop lines in range [SMOP,NMOP]
+        - 'mop'- display mop lines
         - 'snail' - display snail trails (previous GPS line)
 %}
     tic
     global GPScord
-    global MOPkml
-    global a %test
-    global b %test
+    global MOPlat
+    global MOPlon
+    global snail
 
     clf
+
+    % 'snail' - display snail trails (previous GPS line)
+    if any(strcmp(varargin, 'snail')==1)
+        snail(end+1,:)=GPScord;
+         switch plotmode
+            case 'g'
+                geoplot(snail(:,1),snail(:,2),'green')
+            case 'p'
+                plot(snail(:,2),snail(:,1),'green')
+         end
+         hold on
+    else
+        hold off
+    end
+
     % calc map limits
     lat=[GPScord(1)-mapoffset,GPScord(1)+mapoffset];
     lon=[GPScord(2)-mapoffset,GPScord(2)+mapoffset];
@@ -37,34 +52,16 @@ function CallbackGPS(~,~,mapoffset,plotmode,varargin)
     %% Optional arguments (varargin)
     % 'mop' - display mop lines
     if any(strcmp(varargin, 'mop')==1)
-        moprange=varargin{find(strcmp(varargin, 'mop')==1)+1};
-        if isa(moprange,'double') && all(size(moprange)==[1,2]) %check for MOP range spec
-        else
-            msg=sprintf('optional argument ''mop'' must be followed by mop range [SMOP, NMOP]')
-            error(msg)
-        end
         switch plotmode
             case 'g'
                 hold on
-%                 for i=moprange(1):moprange(2)
-%                     geoplot(MOPkml(i).Lat,MOPkml(i).Lon,'red')
-%                 end
-                geoplot(b,a,'red')
+                geoplot(MOPlat,MOPlon,'red')
             case 'p'
                 hold on
-%                 for i=moprange(1):moprange(2)
-%                     plot(MOPkml(i).Lon,MOPkml(i).Lat,'red')
-%                 end
-                plot(a,b,'red')
+                plot(MOPlon,MOPlat,'red')
         end
     end
 
-    % 'snail' - display snail trails (previous GPS line)
-    if any(strcmp(varargin, 'snail')==1)
-        disp('snail working')
-    end
-
-    hold off
     drawnow()
     toc
 end
