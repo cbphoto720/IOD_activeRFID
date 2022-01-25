@@ -1,4 +1,4 @@
-function [latcord,loncord] = MOPelementreducer(MOPkmlpath)
+function [loncord,latcord] = MOPelementreducer(MOPkmlpath)
 %convert a Mmop.kml into a single graphical element for speed
 %plotting.
 %{   
@@ -18,11 +18,11 @@ iii=strcmp({importkml.Geometry}, 'Line')==1; % remove excess points
 MOPkml=importkml(iii);
 
 % Convert struct to matrix for graphing
-latcord=[MOPkml.Lon];
-latcord=[latcord;nan(1,size(latcord,2))];
-latcord=latcord(:);
-
-loncord=[MOPkml.Lat];
+loncord=[MOPkml.Lon];
 loncord=[loncord;nan(1,size(loncord,2))];
 loncord=loncord(:);
+
+latcord=[MOPkml.Lat];
+latcord=[latcord;nan(1,size(latcord,2))];
+latcord=latcord(:);
 end
