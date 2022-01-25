@@ -140,27 +140,29 @@ histogram(Returns{:,:})
 % b=b(:);
 
 %% Initialize MOP lines
-global a
-global b
-[a,b]=MOPelementreducer('MOPs_SD_County.kml');
+global MOPlat
+global MOPlon
+[MOPlon,MOPlat]=MOPelementreducer('MOPs_SD_County.kml');
 
 global GPScord
 GPScord=[32.927981236100734, -117.25985543852305];
 
+global snail
+snail=GPScord;
 
 %% Initialize Timer moving callback
 
 % fixed timer (FASTER)
-n='p'
+n='g'
 switch n
     case 'g'
         tmr=timer('ExecutionMode', 'FixedRate', 'Period', 0.5, ...
-            'TimerFcn', "CallbackGPS('','',0.001,'g','mop',[1,1000]);", ...
-            'StopFcn',"disp('GPS timer stopped')")
+            'TimerFcn', "CallbackGPS('','',0.001,'g','mop','snail');", ...
+            'StopFcn',"disp('GPS timer stopped')",'ErrorFcn',"disp('GPS erorr!')")
     case 'p'
         tmr=timer('ExecutionMode', 'FixedRate', 'Period', 0.12, ...
-            'TimerFcn', "CallbackGPS('','',0.001,'p','mop',[1,1000]);", ...
-            'StopFcn',"disp('GPS timer stopped')")
+            'TimerFcn', "CallbackGPS('','',0.001,'p','mop','snail');", ...
+            'StopFcn',"disp('GPS timer stopped')",'ErrorFcn',"disp('GPS erorr!')")
 end
 %% Start timer func
 start(tmr)
@@ -178,12 +180,46 @@ CallbackGPS('','',0.001,'p','mop',[570,600]);
 % CallbackGPS('','',0.001,'g') % no mops
 
 %% moving mapping tests
-for i=1:500
-    c=0.000001;
-    GPScord(1)=GPScord(1)-c;
-    pause(0.01)
+switch n
+    case 'g'
+        for i=1:200
+        c=0.000001;
+        GPScord(1)=GPScord(1)-c;
+        pause(0.01)
+        end
+        clear i c
+    case 'p'
+        for i=1:500
+        c=0.000001;
+        GPScord(1)=GPScord(1)-c;
+        pause(0.01)
+        end
+        clear i c
 end
-clear i c
+
+%% Moving sample 2
+t = timer('TimerFcn',"stat=false;disp('stopping!')",...
+    'StartFcn',"disp('moving!')",'StartDelay',5);
+start(t)
+
+stat=true;
+while(stat==true)
+    c=0.0000005;
+    GPScord(1)=GPScord(1)+c;
+    c2=-1+2*rand();
+    GPScord(2)=GPScord(2)-c*c2*3;
+    pause(0.001)
+end
+clear i c stat
+delete(t)
+
+%% stop t
+stop(t)
+
+%% stop everything
+stop(timerfind) % stop all timers
+delete(t)
+clear t tmr
 
 %% statistics
 figure
