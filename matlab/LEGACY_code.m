@@ -98,3 +98,11 @@ supported_geo={'Point' , 'Linestring' , 'Polygon' , 'MultiPoint' , ...
     'MultiLineString' , 'MultiPolygon' , 'MultiGeometry'};
 
 strcmp(supported_geo,Geometry)
+
+%% 'mop' varargin specify mop range
+moprange=varargin{find(strcmp(varargin, 'mop')==1)+1};
+        if isa(moprange,'double') && all(size(moprange)==[1,2]) %check for MOP range spec
+        else
+            msg=sprintf('optional argument ''mop'' must be followed by mop range [SMOP, NMOP]')
+            error(msg)
+        end
