@@ -20,3 +20,10 @@ tmr = timer('ExecutionMode', 'FixedRate', ...
     'Period', 1, ...
     'TimerFcn', {@CallbackTimer});
 start(tmr);
+
+
+%% stop everything
+fclose(fid)
+stop(timerfind) % stop all timers
+delete(timerfind)
+clear timerfind
