@@ -267,52 +267,14 @@ text(17,-45, '10 ms', 'HorizontalAlignment','center')
 set(gca, 'XTick', [10:2:34], 'XTickLabel',  {[] 12:2:32 []})    % Used temporarily to get the ‘text’ positions correct
 % set(gca, 'Visible', 'off')
 
-%% Handle Optional arguments with parameter-value pairs
-% https://www.mathworks.com/matlabcentral/answers/164496-how-to-create-an-optional-input-parameter-with-special-name
-
-%result
-% myFunc('-param1', 10, '-param3', 30)
-
-% function test_params(varargin)
-%     % Defaults
-%     param1 = 1;
-%     param2 = 2;
-%     param3 = 3;
-%     
-%     % Optionals
-%     for ii = 1:2:nargin
-%         if strcmp('-param1', varargin{ii})
-%             param1 = varargin{ii+1};
-%         elseif strcmp('-param2', varargin{ii})
-%             param2 = varargin{ii+1};
-%         elseif strcmp('-param3', varargin{ii})
-%             param3 = varargin{ii+1};
-%         end
-%     end
-%     
-%     % Test!
-%     disp(param1)
-%     disp(param2)
-%     disp(param3)
-%     
-%     % More stuff here
-%     % ...
-%     
-% end
-
 %% Lat/Lon to meters
 global GPScord
 GPScord=[32.927981236100734, -117.25985543852305]; %[Lat, Lon]
 
 lat_m=111e3;
-lon_m=111e3*cosd(GPScord(1));
+lon_m=111e3*cosd(GPScord(1))
 
-mapoffset=0.001*3;
+mapoffset=0.001;
 
 horziscale=mapoffset*2*lon_m
-vertscale=mapoffset*2*lat_m
-
-timerfactor=0.05;
-walkspeed=1*timerfactor; % m/s
-walkdistlat=walkspeed/lat_m
-walkdistlon=walkspeed/lon_m
+vertscale=mapoffset*2*lon_m
