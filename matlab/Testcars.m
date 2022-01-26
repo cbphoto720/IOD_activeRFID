@@ -20,6 +20,7 @@ clear C fid ans
 Antenna=serialport(COM,9600);
 configureTerminator(Antenna,93); % 93 ascii = ']'
 % Antenna.BytesAvailableFcn
+% serialportlist('all')
 
 %% Read Serial _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 [tagID,RSSI] = readARFID(Antenna,tagIDlist, num_tags)
@@ -95,12 +96,12 @@ if fid < 0
 end
 
 % read datalog
-test=textscan(fid,'%s', 'Delimiter', '');
-test=test{1};
-test2=sscanf(test{end},'%8dT%6d',2)
-test3=textscan(test{end},'%s', 'Delimiter', ',');
-test3=test3{1};
-test4=readtable('datalog_01-11-22.txt');t
+% test=textscan(fid,'%s', 'Delimiter', '');
+% test=test{1};
+% test2=sscanf(test{end},'%8dT%6d',2)
+% test3=textscan(test{end},'%s', 'Delimiter', ',');
+% test3=test3{1};
+test4=readtable('datalog_01-11-22.txt');
 
 %close datalog
 msg=fclose(fid);
@@ -241,3 +242,10 @@ a=a(:);
 b=[MOPkml.Lat];
 b=[b;nan(1,size(b,2))];
 b=b(:);
+
+%% color 1 bar of historgram
+n = [4,2,2,2,2,2,2,3,2,6,4,2,2,3];
+h = histogram(n);
+b = bar(2:6,h.Values);
+b.FaceColor = 'flat';
+b.CData(2,:) = [.5 0 .5];
