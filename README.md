@@ -56,12 +56,9 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 
 
 # Notes
-## Questions for Brian
-- [ ] 1/10/22 in test.m, your callback functions update a global variable.  Is this a product of using a callback function on the BytesAvailableFcn or is there more to it?
 
 
-
-# Antennas
+## Antennas
 A great overview of [Antenna basics](https://www.antenna-theory.com/basics/main.php)
 and the [The Friis Equation](https://www.antenna-theory.com/basics/friis.php)
 
@@ -79,6 +76,7 @@ DIY options
  - [DIY 433 MHz Directional antenna](https://www.instructables.com/433-MHz-tape-measure-antenna-suits-UHF-transmitte/) small, directional "tape measurer antenna"
  - [DIY mini 433 MHz Omni-Directional antenna](https://www.instructables.com/433-MHz-Coil-loaded-antenna/) inexpensive, low power omnidirectional
 
+
 # Code
 ### Markdown
 - [Markdown syntax cheat sheet](https://daringfireball.net/projects/markdown/syntax#img)
@@ -90,3 +88,6 @@ DIY options
  - [fscanf](https://www.mathworks.com/help/matlab/ref/fscanf.html) read data from files
  - [serialportlist](https://www.mathworks.com/help/matlab/ref/serialportlist.html#d123e1295884) serialportlist("available")=open ports
  - [strcmp(A , B)]() a faster version of find() to compare string to a cell { }
+
+
+ - [Pause vs Timer](https://www.mathworks.com/matlabcentral/answers/83271-pause-n-vs-timer-which-is-better) - Good explanation of matlabs fake "multithreading" with a timerfcn vs using a while loop.  Also a great method to save compute time by not re-running plot commands but instead only updating data in handles.
