@@ -269,6 +269,16 @@ set(gca, 'XTick', [10:2:34], 'XTickLabel',  {[] 12:2:32 []})    % Used temporari
 
 %% Handle Optional arguments with parameter-value pairs
 % https://www.mathworks.com/matlabcentral/answers/164496-how-to-create-an-optional-input-parameter-with-special-name
+% a solution I like for skipping functions with large inputs
+
+
+% for optional arguments with small input size (or none at all) use strcmp:
+% ii= strcmp(varargin, 'mop')==1
+% if any(ii)
+%   dataidx=varargin{find(ii)+1}
+%   do stuff..
+% end
+
 
 %result
 % myFunc('-param1', 10, '-param3', 30)
