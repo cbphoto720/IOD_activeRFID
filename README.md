@@ -91,3 +91,7 @@ DIY options
 
 
  - [Pause vs Timer](https://www.mathworks.com/matlabcentral/answers/83271-pause-n-vs-timer-which-is-better) - Good explanation of matlabs fake "multithreading" with a timerfcn vs using a while loop.  Also a great method to save compute time by not re-running plot commands but instead only updating data in handles.
+ - [AppDesigner TmrFcn]() - Correct order of function arguments:  
+ <code>function example(app, obj, event, string_arg)  
+&nbsp;&nbsp;&nbsp; ... do stuff \
+end</code>
