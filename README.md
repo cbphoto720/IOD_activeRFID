@@ -19,23 +19,31 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 
 ##### Next Phase -> Intergrate GPS
 - [ ] Start logging inreach GPS chip with serial read
-- [ ] Includ mapping functionality
-- [ ] point map north and have it track user with a "snail trail" gps line of previous points.  (color points based on RSSI for easy mapping start)
+- [x] Include mapping functionality
+- [x] point map north and have it track user with a "snail trail" gps line of previous points.
+- [ ] color points based on RSSI
 - [ ] read OUT(date).txt to create a single point with colored RSSI intenstiy, log many points to create a map (use timestamp to sync with GPS, or use another serial read to grab position)
 - [ ] Use short range omnidirectional DIY coil antenna for low power signal  to get minimal signal unless close to tag
 - [ ] display message "tracking cobble ID: XXXXX" once signal has been high for some criteria, Map display pcolor of signal strength.  (average signal over area and gps coord)
 
+##### 1/28/22
+- Work on Antenna data logging and RSSI callback func.  Talk to Brian about caching data for RSSI scatter.
+What is the best way to save the data?
+- After determining data format, make RSSI bar graph callback & highlight specific bar for prev tag/next tag.
+- implement some sort of locking system to your config menu for safety. 
+
+
 ##### other features
- - [ ] COM port dropdown selection
- - [ ] import MOP line or coastline
- - [ ] navigation map using mapping toolbox
+ - [x] COM port dropdown selection
+ - [x] import MOP line
+ - [ ] import coastline
  - [ ] For saving data in the same folder as the installed app:
 
 <code>files = matlab.apputil.getInstalledAppInfo;\
 [path,\~,~] = fileparts(files(1).location)</code>
 
  - [ ] midnight rollover handling
- - [ ] continuous log of RSSI will only display heatmap for 1 tag at a time, but data will be recorded for any signal recieved
+ - [ ] continuous log of RSSI will only display heatmap for 1 tag at a time, but data will be recorded for any signal received
 
 
 
