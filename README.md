@@ -30,7 +30,7 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - Work on Antenna data logging and RSSI callback func.  Talk to Brian about caching data for RSSI scatter.
 What is the best way to save the data?
 - After determining data format, make RSSI bar graph callback & highlight specific bar for prev tag/next tag.
-- implement some sort of locking system to your config menu for safety. 
+- implement some sort of locking system to your config menu for safety.
 
 
 ##### other features
@@ -103,3 +103,16 @@ DIY options
  <code>function example(app, obj, event, string_arg)  
 &nbsp;&nbsp;&nbsp; ... do stuff \
 end</code>
+
+### CDF Notes
+The common data format NASA standard in data storage.
+[CDF guide](https://spdf.gsfc.nasa.gov/pub/software/cdf/doc/cdf380/cdf380ug.pdf).  This is so overkill for this project, but it is very good practice for future formats.
+
+**Features I like**
+- rVariable - fixed dimensions
+- zVariable - save disk space for variables with changing dimensions (recommended)
+- Sparse Records (1.4.4) - only save entries instead of pad values
+
+
+**too much data**
+- Checksum (1.4.6) - Data corruption checking.  (CPU intensive)
