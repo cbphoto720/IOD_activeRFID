@@ -388,7 +388,7 @@ headers = strsplit(tline, ',');     %a cell array of strings
 % flag have delimiter be a space instead of tab to save a line of code.
 % is this important though?  This works and is more clear
 datacell = textscan(fid,['[',repmat('%d',[1,length(RSSI)]),']'], 'Delimiter','/t', 'CollectOutput', 1);
-datavalues = datacell{1};    %as a numeric array
+datavalues = datacell{1};   %as a numeric array
 
 % close datalog
 msg=fclose(fid);
@@ -396,6 +396,6 @@ if msg < 0
   error('Failed to close file "%s"', filename);
 end
 
-%%
+%% CDF tests
 cdfid = cdflib.open('example.cdf');
 
