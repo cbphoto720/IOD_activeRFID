@@ -100,19 +100,18 @@ DIY options
 
  - [Pause vs Timer](https://www.mathworks.com/matlabcentral/answers/83271-pause-n-vs-timer-which-is-better) - Good explanation of matlabs fake "multithreading" with a timerfcn vs using a while loop.  Also a great method to save compute time by not re-running plot commands but instead only updating data in handles.
  - [AppDesigner TmrFcn]() - Correct order of function arguments:  
- <code>function example(app, obj, event, string_arg)  
-&nbsp;&nbsp;&nbsp; ... do stuff \
-end</code>
+    <code>function example(app, obj, event, string_arg)  
+    &nbsp;&nbsp;&nbsp; ... do stuff \
+    end</code>
 
 ### CDF Notes
 The common data format NASA standard in data storage.
-[CDF guide](https://spdf.gsfc.nasa.gov/pub/software/cdf/doc/cdf380/cdf380ug.pdf).  This is so overkill for this project, but it is very good practice for future formats.
+[CDF guide](https://spdf.gsfc.nasa.gov/pub/software/cdf/doc/cdf380/cdf380ug.pdf).  This is so overkill for this project, but it is very good practice for future formats. [Matlab CDF](https://www.mathworks.com/help/matlab/common-data-format.html)
 
-**Features I like**
+**Features**
 - rVariable - fixed dimensions
 - zVariable - save disk space for variables with changing dimensions (recommended)
-- Sparse Records (1.4.4) - only save entries instead of pad values
-
+- Sparse Records (1.4.4) - only save entries instead of pad values (Seems helpful for RSSI, more research)
 
 **too much data**
 - Checksum (1.4.6) - Data corruption checking.  (CPU intensive)
