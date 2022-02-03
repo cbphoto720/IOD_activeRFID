@@ -32,6 +32,9 @@ What is the best way to save the data?
 - After determining data format, make RSSI bar graph callback & highlight specific bar for prev tag/next tag.
 - implement some sort of locking system to your config menu for safety.
 
+##### 2/2/22
+- RSSI aquired, create new timer function to bar graph RSSI and periodically clear info.  Find best way to sync the clearing with the GPS tag (perhaps clear RSSI the instant it maps it)
+
 
 ##### other features
  - [x] COM port dropdown selection
