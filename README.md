@@ -35,6 +35,9 @@ What is the best way to save the data?
 ##### 2/2/22
 - RSSI aquired, create new timer function to bar graph RSSI and periodically clear info.  Find best way to sync the clearing with the GPS tag (perhaps clear RSSI the instant it maps it)
 
+##### 2/3/22
+- RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.  (time dependent GPS sync?)
+
 
 ##### other features
  - [x] COM port dropdown selection
