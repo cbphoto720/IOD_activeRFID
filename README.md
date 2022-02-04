@@ -10,18 +10,18 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - [x] Research Antenna
 - [x] test script to read serial data
 - [x] log serial data from test script into OUT(date).txt file (use fopen( ,'a') 'a' for append
-- [ ] configure readserial as a callback function with BytesAvailableFcn.  Then practice using a timer with a callback for logging data in bigger chunks.  (these chunks of history will hold values in memory rather than logging unessesary RSSI values when seraching for a cobble)
-- [ ] [BytesAvailableFcn](https://www.mathworks.com/help/instrument/bytesavailablefcn.html)
-- [ ] [timer](https://www.mathworks.com/help/matlab/matlab_prog/use-a-matlab-timer-object.html)
-- [ ] [switch](https://www.mathworks.com/help/matlab/ref/switch.html)
-- [ ] intergrate readserial functionality into cobblefinder GUI to plot results
-- [ ] create a simple export from matlab compiler to check functionality and see if you can measure performance on a toughbook
+- [x] configure readserial as a callback function with BytesAvailableFcn.  Then practice using a timer with a callback for logging data in bigger chunks.  (these chunks of history will hold values in memory rather than logging unessesary RSSI values when seraching for a cobble)
+- [x] [BytesAvailableFcn](https://www.mathworks.com/help/instrument/bytesavailablefcn.html)
+- [x] [timer](https://www.mathworks.com/help/matlab/matlab_prog/use-a-matlab-timer-object.html)
+- [x] [switch](https://www.mathworks.com/help/matlab/ref/switch.html)
+- [x] intergrate readserial functionality into cobblefinder GUI to plot results
+- [x] create a simple export from matlab compiler to check functionality and see if you can measure performance on a toughbook
 
 ##### Next Phase -> Intergrate GPS
 - [ ] Start logging inreach GPS chip with serial read
 - [x] Include mapping functionality
 - [x] point map north and have it track user with a "snail trail" gps line of previous points.
-- [ ] color points based on RSSI
+- [x] color points based on RSSI
 - [ ] read OUT(date).txt to create a single point with colored RSSI intenstiy, log many points to create a map (use timestamp to sync with GPS, or use another serial read to grab position)
 - [ ] Use short range omnidirectional DIY coil antenna for low power signal  to get minimal signal unless close to tag
 - [ ] display message "tracking cobble ID: XXXXX" once signal has been high for some criteria, Map display pcolor of signal strength.  (average signal over area and gps coord)
@@ -36,7 +36,12 @@ What is the best way to save the data?
 - RSSI aquired, create new timer function to bar graph RSSI and periodically clear info.  Find best way to sync the clearing with the GPS tag (perhaps clear RSSI the instant it maps it)
 
 ##### 2/3/22
-- RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.  (time dependent GPS sync?)
+- [ ] RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.  (time dependent GPS sync?)
+- [ ] measure performance on a toughbook!
+- [ ] compile all information in a CDF!  Variables are getting out of hand
+- [ ] start collecting RSSI from other tags simultaneously.
+- [ ] Next, implement prev tag/next tag to focus bar graph color/RSSIdot display
+- [ ] Start long dist testing by faking data and trying to display it all at once
 
 
 ##### other features
