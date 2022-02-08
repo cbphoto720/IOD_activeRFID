@@ -22,9 +22,15 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - [x] Include mapping functionality
 - [x] point map north and have it track user with a "snail trail" gps line of previous points.
 - [x] color points based on RSSI
-- [ ] read OUT(date).txt to create a single point with colored RSSI intenstiy, log many points to create a map (use timestamp to sync with GPS, or use another serial read to grab position)
-- [ ] Use short range omnidirectional DIY coil antenna for low power signal  to get minimal signal unless close to tag
-- [ ] display message "tracking cobble ID: XXXXX" once signal has been high for some criteria, Map display pcolor of signal strength.  (average signal over area and gps coord)
+- [ ] measure performance on a toughbook!
+- [ ] compile all information in a single variable.  Or choose to have tag RSSI recorded separately to find a creative way to store sparse records.  Index this record with a common timestamp to pull GPS data or simply re-write GPS info in RSSI data for performance.
+- [ ] Next, implement prev tag/next tag to focus bar graph color/RSSIdot display
+- [ ] Log GPS serial positions from IG8 (talk to Rob)
+- [ ] Start long dist testing by faking data and trying to display it all at once
+- [ ] begin work on RSSI signal interpretation and thresholds to ensure fast aquisition of data.
+  - when communicating with multiple tags, expect delays (NaN values)
+  - periodic drops in signal are expected
+- [ ] implement a "guessing" feature that paints in a swatch of potential RFID locations based on GPS data
 
 ##### 1/28/22
 - Work on Antenna data logging and RSSI callback func.  Talk to Brian about caching data for RSSI scatter.
@@ -33,15 +39,10 @@ What is the best way to save the data?
 - implement some sort of locking system to your config menu for safety.
 
 ##### 2/2/22
-- RSSI aquired, create new timer function to bar graph RSSI and periodically clear info.  Find best way to sync the clearing with the GPS tag (perhaps clear RSSI the instant it maps it)
+RSSI aquired, create new timer function to bar graph RSSI and periodically clear info.  Find best way to sync the clearing with the GPS tag (perhaps clear RSSI the instant it maps it)
 
 ##### 2/3/22
-- [ ] RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.  (time dependent GPS sync?)
-- [ ] measure performance on a toughbook!
-- [ ] compile all information in a CDF!  Variables are getting out of hand
-- [ ] start collecting RSSI from other tags simultaneously.
-- [ ] Next, implement prev tag/next tag to focus bar graph color/RSSIdot display
-- [ ] Start long dist testing by faking data and trying to display it all at once
+RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.
 
 
 ##### other features
@@ -54,7 +55,6 @@ What is the best way to save the data?
 [path,\~,~] = fileparts(files(1).location)</code>
 
  - [ ] midnight rollover handling
- - [ ] continuous log of RSSI will only display heatmap for 1 tag at a time, but data will be recorded for any signal received
 
 
 
