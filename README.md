@@ -71,6 +71,7 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - %speed - a potential improvement
 - %stats - code purely to asses the performance of other features
 - %test - a temporary element
+- %debug - facilitate tinkering
 
 
 
