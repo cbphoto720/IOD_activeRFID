@@ -62,6 +62,7 @@ if msg < 0
   error('Failed to close file "%s"', filename);
 end
 clear msg dtstr
+disp('done!')
 
 %% Speed test _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 
@@ -89,6 +90,7 @@ end
 
 %% Read data from datalog _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/
 
+
 % open datalog
 fid = fopen(outpath,'r');
 if fid < 0
@@ -96,12 +98,29 @@ if fid < 0
 end
 
 % read datalog
+% tic
 % test=textscan(fid,'%s', 'Delimiter', '');
 % test=test{1};
-% test2=sscanf(test{end},'%8dT%6d',2)
-% test3=textscan(test{end},'%s', 'Delimiter', ',');
-% test3=test3{1};
-test4=readtable('datalog_01-11-22.txt');
+% toc
+% 
+% tic
+% test_dateandtime=sscanf(test{end},'%8dT%6d',2); % Seperate date & time
+% toc
+
+% tic
+% test_readline=textscan(test{end},'%s', 'Delimiter', ','); % read full line
+% test_readline=test_readline{1};
+% toc
+
+% tic
+% test2=readtable('datalog_01-11-22.txt'); % slower way to read data
+% toc
+
+% Example read:
+tline = fgetl(fid);
+headers = strsplit(tline, ',');     %a cell array of strings
+datacell = textscan(fid, '%8dT%6d%f%f', 'Delimiter',',', 'CollectOutput', 1);
+datavalues = datacell{1};    %as a numeric array
 
 %close datalog
 msg=fclose(fid);
@@ -326,3 +345,57 @@ timerfactor=0.05;
 walkspeed=1*timerfactor; % m/s
 walkdistlat=walkspeed/lat_m
 walkdistlon=walkspeed/lon_m
+
+%% Write data test 2 - RSSI Matrix method
+
+% Create data folder, specify filename & path
+if ~isfolder('data') %check if data dir exists
+    mkdir('data')
+end
+dtstr=datestr(datetime('now'),'mm-dd-yy'); %get current date
+filename=['datalog2','_',dtstr,'.txt'];
+filename=convertCharsToStrings(filename); %convert to string
+outpath=fullfile('data',filename);
+
+%open datalog
+fid = fopen(outpath,'a');
+if fid < 0
+  error('Failed to open file "%s" because: "%s"', filename, msg);
+end
+
+% write data
+RSSI=[100,80,40,30,nan,5,160];
+output=[newline,sprintf(['[%d',repmat('t %d',[1,length(RSSI)-1]),']'],RSSI)];
+output = regexprep(output, 't', char(9));
+writecount=fwrite(fid,output);
+
+% close datalog
+msg=fclose(fid);
+if msg < 0
+  error('Failed to close file "%s"', filename);
+end
+
+%% Read data
+
+fid = fopen(outpath,'r');
+if fid < 0
+  error('Failed to open file "%s" because: "%s"', filename, msg);
+end
+
+% Example read
+tline = fgetl(fid);
+headers = strsplit(tline, ',');     %a cell array of strings
+% flag have delimiter be a space instead of tab to save a line of code.
+% is this important though?  This works and is more clear
+datacell = textscan(fid,['[',repmat('%d',[1,length(RSSI)]),']'], 'Delimiter','/t', 'CollectOutput', 1);
+datavalues = datacell{1};   %as a numeric array
+
+% close datalog
+msg=fclose(fid);
+if msg < 0
+  error('Failed to close file "%s"', filename);
+end
+
+%% CDF tests
+cdfid = cdflib.open('example.cdf');
+
