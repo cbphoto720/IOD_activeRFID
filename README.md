@@ -16,21 +16,29 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - [x] [switch](https://www.mathworks.com/help/matlab/ref/switch.html)
 - [x] intergrate readserial functionality into cobblefinder GUI to plot results
 - [x] create a simple export from matlab compiler to check functionality and see if you can measure performance on a toughbook
-
-##### Next Phase -> Intergrate GPS
-- [ ] Start logging inreach GPS chip with serial read
+- [ ] Start logging IG8 GPS with serial read
 - [x] Include mapping functionality
 - [x] point map north and have it track user with a "snail trail" gps line of previous points.
 - [x] color points based on RSSI
 - [ ] measure performance on a toughbook!
 - [ ] compile all information in a single variable.  Or choose to have tag RSSI recorded separately to find a creative way to store sparse records.  Index this record with a common timestamp to pull GPS data or simply re-write GPS info in RSSI data for performance.
-- [ ] Next, implement prev tag/next tag to focus bar graph color/RSSIdot display
+- [x] Next, implement prev tag/next tag to focus bar graph color/RSSIdot display
 - [ ] Log GPS serial positions from IG8 (talk to Rob)
 - [ ] Start long dist testing by faking data and trying to display it all at once
-- [ ] begin work on RSSI signal interpretation and thresholds to ensure fast aquisition of data.
+
+**Extra features**
+- [ ] RSSI signal interpretation and thresholds to ensure fast aquisition of data.
   - when communicating with multiple tags, expect delays (NaN values)
   - periodic drops in signal are expected
+  - handle RSSI overfill with a separate timer
 - [ ] implement a "guessing" feature that paints in a swatch of potential RFID locations based on GPS data
+- [ ] import coastline
+- [ ] For saving data in the same folder as the installed app:
+
+<code>files = matlab.apputil.getInstalledAppInfo;\
+[path,\~,~] = fileparts(files(1).location)</code>
+
+- [ ] midnight rollover handling
 
 ##### 1/28/22
 - Work on Antenna data logging and RSSI callback func.  Talk to Brian about caching data for RSSI scatter.
@@ -45,21 +53,10 @@ RSSI aquired, create new timer function to bar graph RSSI and periodically clear
 RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.
 
 
-##### other features
- - [x] COM port dropdown selection
- - [x] import MOP line
- - [ ] import coastline
- - [ ] For saving data in the same folder as the installed app:
-
-<code>files = matlab.apputil.getInstalledAppInfo;\
-[path,\~,~] = fileparts(files(1).location)</code>
-
- - [ ] midnight rollover handling
-
-
 
 # Variables Tree
 #### Global Variables
+*No longer applicable to program.  (Reformat to include timer variables as well as program log outuput.*
 - Timestamp
 - TagID & RSSI (for directional & omni-dir antenna)
 - GPS coord
