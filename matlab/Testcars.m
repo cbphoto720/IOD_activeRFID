@@ -252,11 +252,11 @@ plot(T)
 
 %% Struct test
 % cell2mat(struct2cell(MOPkml.Lon))
-global a
-global b
-a=[MOPkml.Lon];
-a=[a;nan(1,size(a,2))];
-a=a(:);
+% global a
+% global b
+a1=[MOPkml.Lon];
+a1=[a1;nan(1,size(a1,2))];
+a1=a1(:);
 
 b=[MOPkml.Lat];
 b=[b;nan(1,size(b,2))];
@@ -399,3 +399,28 @@ end
 %% CDF tests
 cdfid = cdflib.open('example.cdf');
 
+%% Play sound _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
+close all; clear all; clc
+
+amp=10; 
+% fs=20500;  % sampling frequency
+fs=5500;  % sampling frequency
+duration=0.1
+freq=500
+values=0:1/fs:duration;
+a1=amp*sin(2*pi* freq*values);
+sound(a1,fs)
+
+%% Sound - chime test
+dur=0.08;
+% [a,~]=playchime(300,dur);
+% [b,fs]=playchime(500,dur);
+a1=1500;
+[c,fs]=playchime([a1],dur);
+a1=1.2*a1;
+[d,fs]=playchime([a1],dur);
+
+s=[d;c];
+sound(s,fs)
+
+plot(s)
