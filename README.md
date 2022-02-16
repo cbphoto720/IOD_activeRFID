@@ -52,29 +52,39 @@ RSSI aquired, create new timer function to bar graph RSSI and periodically clear
 ##### 2/3/22
 RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update & improve RSSI acquisition.  Only select tags are being registered at any given loop cycle.  May need to implement more timers for RSSI collection and graphing.
 
+##### 2/11/22
+- To read bulk output file:
+  - read columns of data **[timestamp, Lat , Lon , RSSI]**
+  - remove nan values (rows)
+- To read flag boolean chart **length(num_tags)** - boolean values to indicate if a cobble has been found
+- to read slim output file:
+  - read columns **[flag (tagID#), timestamp, Lat, Lon]**
 
 
-# Variables Tree
+
+# Program Information
 #### Global Variables
 *No longer applicable to program.  (Reformat to include timer variables as well as program log outuput.*
 - Timestamp
 - TagID & RSSI (for directional & omni-dir antenna)
 - GPS coord
-- Flag index {length(num_tags)}
-    - Boolean values that notate recorded cobbles
+- Flag cobble (value = TagID# that is being flagged)
 
 #### Comment flags
 - %flag - an important note
 - %speed - a potential improvement
-- %stats - code purely to asses the performance of other features
+- %stats - code purely to asses the performance of features
 - %test - a temporary element
 - %debug - facilitate tinkering
+
+#### Files required
+- taglist.txt - List of active tag ID #s
+- MOPs_SD_County.kml - MOP lines in SD
+- MOPelementreducer.m - fcn. to format MOP lines into 1 graphical element
 
 
 
 # Notes
-
-
 ## Antennas
 A great overview of [Antenna basics](https://www.antenna-theory.com/basics/main.php)
 and the [The Friis Equation](https://www.antenna-theory.com/basics/friis.php)
