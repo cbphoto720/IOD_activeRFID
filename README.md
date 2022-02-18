@@ -6,6 +6,35 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 
 
 
+# Overview for Survey conducted to find active cobbles
+###### End Goal
+- arrive at site
+- use manual directional antenna + electronic compass / doppler or Adcock array to detect initial signal bearings
+  - bearing & RSII information compiled in GUI to give predicted locations of tag
+- walk toward predictions with omnidirectional antenna while monitoring RSSI
+- program will find location of peak RSSI by instructing user to walk in specific direction
+- logged cobble will then be ignored on RSSI bar graph and will be added to a log
+- move on to next cobble
+
+
+###### Simplified
+Coin tags have ~40m range, so direction finding unlikely without dir. antenna with high gain.
+- walk pattern with omni antenna and prod around when high RSSI is detected
+
+
+# Version Control
+## V1.1
+- save to datalog with specific filename
+- log cobble button
+  - save to new logg
+  - hide RSSI
+  - mark location on GPSplot
+
+## V1.2
+- GPS com port  
+
+
+
 # Road Map
 - [x] Research Antenna
 - [x] test script to read serial data
@@ -27,13 +56,13 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - [ ] Start long dist testing by faking data and trying to display it all at once
 
 **Extra features**
-- [ ] RSSI signal interpretation and thresholds to ensure fast aquisition of data.
+- [ ] RSSI signal interpretation and thresholds to ensure fast acquisition of data.
   - when communicating with multiple tags, expect delays (NaN values)
   - periodic drops in signal are expected
   - handle RSSI overfill with a separate timer
 - [ ] implement a "guessing" feature that paints in a swatch of potential RFID locations based on GPS data
 - [ ] import coastline
-- [ ] For saving data in the same folder as the installed app:
+- [ ] For saving data in the same folder as the installed app (But I think matlab automatic directy path is to where app in launched):
 
 <code>files = matlab.apputil.getInstalledAppInfo;\
 [path,\~,~] = fileparts(files(1).location)</code>

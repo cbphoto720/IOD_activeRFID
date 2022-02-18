@@ -2,7 +2,7 @@
 
 clear all
 COM="COM4";
-addpath(genpath('C:\Users\ccblack\Documents\Carson\IOD_activeRFID'))
+addpath(genpath('C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID'))
 pause(0.05)
 %% 
 % Import tag list
@@ -396,8 +396,37 @@ if msg < 0
   error('Failed to close file "%s"', filename);
 end
 
-%% CDF tests
-cdfid = cdflib.open('example.cdf');
+%% CDF tests _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
+fakemydata=ones(1,30);
+
+%% create CDF
+cdfId = cdflib.create('datalog.cdf');
+disp(cdfId)
+
+varnum=cdflib.createVar(cdfId,'RSSI','CDF_UINT1',1,30,true,0)
+
+ls *.cdf
+%% open exsisting cdf (if it is already created from above)
+cdfId = cdflib.open('datalog.cdf');
+
+%% do stuff
+cdflib.inquire(cdfId)
+
+recSpec=[0,1,1];
+dimSpec={0,30,1}; %FLAG WORKING - make it work for longer record lengths
+cdflib.hyperPutVarData(cdfId,varnum,recSpec,dimSpec,uint8(fakemydata))
+
+%%
+% info  = cdflib.inquireVar(cdfId,0)
+numrecs = cdflib.getVarAllocRecords(cdfId,0)
+
+%% CLOSE cdf
+cdflib.close(cdfId)
+
+%% Clean up (delte CDF)
+cdflib.delete(cdfId);
+
+clear cdfId
 
 %% Play sound _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 close all; clear all; clc
