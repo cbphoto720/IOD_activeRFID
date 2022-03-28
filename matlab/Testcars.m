@@ -453,3 +453,6 @@ s=[d;c];
 sound(s,fs)
 
 plot(s)
+
+%%
+importkml=kml2struct('Cobble_location-test.kml');
