@@ -89,6 +89,12 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - to read slim output file:
   - read columns **[flag (tagID#), timestamp, Lat, Lon]**
 
+##### 3/30/22
+-  work on logging cobble kml and cobble kml import
+- should immediately save in case of program crash
+- [geospatial table creation](https://www.mathworks.com/help/map/ref/geocrs.html)
+- [save geospatial table](https://www.mathworks.com/help/map/create-geospatial-tables.html)
+
 
 
 # Program Information
