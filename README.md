@@ -95,6 +95,14 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [geospatial table creation](https://www.mathworks.com/help/map/ref/geocrs.html)
 - [save geospatial table](https://www.mathworks.com/help/map/create-geospatial-tables.html)
 
+##### 2022-04-04 Feature Goals
+- [ ] mark cobble button saves datalog to table (map with webmap)
+  - [ ] added datalog.datalake: a table variable to organize information
+  - [ ] translate current datalog information into datalake table
+- [ ] dir-antenna graph with faster refresh rate
+- [ ] how to handle RSSI histogram refresh
+- [ ] import table to display previous cobble positions
+
 
 
 # Program Information
@@ -111,6 +119,7 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - %stats - code purely to asses the performance of features
 - %test - a temporary element
 - %debug - facilitate tinkering
+- %current - a feature I am CURRENTly working on
 
 #### Files required
 - taglist.txt - List of active tag ID #s
