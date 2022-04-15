@@ -135,6 +135,8 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 
 
 # Notes
+## Data output
+- ISO 8601 date formet: **yyyymmddThhmmssZ** (z for UTC time)
 ## GPS
 - [iG8 serial data format $GPGGA](https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm)
 

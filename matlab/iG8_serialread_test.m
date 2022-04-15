@@ -49,9 +49,24 @@ fprintf('nextindex %d\nrest of var %s\n',nextindex,scandata(nextindex:end))
 %WIP 04142022 - read out GPS variables and convert to usable numbers.  see
 %GPGGA format as reference (in readme)
 
-splitvar=strsplit(scandata,',')
-if splitvar{1}=="$GPGGA"
-    splitvar{2}
+gps.sersplit=strsplit(scandata,',')
+if gps.sersplit{1}=="$GPGGA"
+    % Date & time
+    datalake.time=[datestr(now,'yyyymmdd'),'T',gps.sersplit{2},'Z'];
+
+    % GPS Lat/Lon
+    if gps.sersplit{4}=="N"
+        datalake.lat=str2double(gps.sersplit{3}(1:2)) + str2double(gps.sersplit{3}(3:13))/60;
+    elseif gps.sersplit{4}=="S"
+        datalake.lat=-str2double(gps.sersplit{3}(1:2)) + str2double(gps.sersplit{3}(3:13))/60;
+    end
+    if gps.sersplit{6}=="W"
+        datalake.lon=str2double(gps.sersplit{5}(1:3)) + str2double(gps.sersplit{5}(4:14))/60;
+    elseif gps.sersplit{6}=="E"
+        datalake.lon=360-str2double(gps.sersplit{5}(1:3)) + str2double(gps.sersplit{5}(4:14))/60;
+    end
+
+
 else
     % GPS read error
 end
