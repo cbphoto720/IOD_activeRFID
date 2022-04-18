@@ -454,14 +454,14 @@ sound(s,fs)
 
 plot(s)
 
-%% Cobble positions.kml
+%% Cobble positions.kml _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 
 % _____ Import Previous Positions _____
 importkml=kml2struct('Cobble_location-test.kml');
 
 scatter([importkml.Lon],[importkml.Lat])
 
-% _____ Export saved Positions _____
+%% _____ Export saved Positions _____
 %{
 Example Geographic table from ML:
 
@@ -470,7 +470,21 @@ openExample('map/CreateGeospatialTableFromArraysExample')
 use this exact format and save cobble positions as points or as a line with
 line segements for each cobble kml.  (that way it saves your logged cobbles
 even if the program crashes)
-}%
+%}
 
 lats = [35.7082 -22.8842 51.5074 39.9042 37.9838]';
 lons = [139.6401 -43.3882 -0.1278 116.4074 23.7275]';
+
+shape = geopointshape(lats,lons);
+shape.GeographicCRS = geocrs(4326);
+
+names = ["Cobble#1","Cobble#2","Cobble#3","Cobble#4","Cobble#5"]';
+
+GT = table(shape,names,VariableNames=["Shape" "Name"])
+
+kmlwrite("testcobblepointsDATE.kml",GT)
+
+%% READ MATLAB kml
+importkml=kml2struct('testcobblepointsDATE.kml');
+
+scatter([importkml.Lon],[importkml.Lat])

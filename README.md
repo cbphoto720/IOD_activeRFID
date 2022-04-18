@@ -99,8 +99,15 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [ ] mark cobble button saves datalog to table (map with webmap)
   - [ ] added datalog.datalake: a table variable to organize information
   - [ ] translate current datalog information into datalake table
+- [ ] GPS log position
+  - Sample GPS line:
+  <br><code>$GPGGA,210302.00,3252.02652259,N,11715.11341598,W,1,20,0.7,53.759,M,-35.060,M,,*63
+<br> [GMT time, lat, N, lon, W, 1, #satallites, other info, checksum]
+  </code>
+- [ ] snail trail fixed size (2hr max or # of entries max)
 - [ ] dir-antenna graph with faster refresh rate
 - [ ] how to handle RSSI histogram refresh
+- [ ] default values changed in .txt doc (com ports, display previous cobbles, snail trail timeout, etc..)
 - [ ] import table to display previous cobble positions
 
 
@@ -126,9 +133,15 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - MOPs_SD_County.kml - MOP lines in SD
 - MOPelementreducer.m - fcn. to format MOP lines into 1 graphical element
 
-
+# Questions
+- log iG8 time in UTC vs using matlab/computer
 
 # Notes
+## Data output
+- ISO 8601 date formet: **yyyymmddThhmmssZ** (z for UTC time)
+## GPS
+- [iG8 serial data format $GPGGA](https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm)
+
 ## Antennas
 A great overview of [Antenna basics](https://www.antenna-theory.com/basics/main.php)
 and the [The Friis Equation](https://www.antenna-theory.com/basics/friis.php)
