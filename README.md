@@ -109,6 +109,7 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [ ] how to handle RSSI histogram refresh
 - [ ] default values changed in .txt doc (com ports, display previous cobbles, snail trail timeout, etc..)
 - [ ] import table to display previous cobble positions
+- [ ] scale bar in gps map
 
 
 
@@ -134,7 +135,9 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - MOPelementreducer.m - fcn. to format MOP lines into 1 graphical element
 
 # Questions
-- log iG8 time in UTC vs using matlab/computer
+- log iG8 time in UTC vs using matlab/computer time
+- use checksum from iG8 messages
+- display # of satallites/gps quality from iG8?
 
 # Notes
 ## Data output
