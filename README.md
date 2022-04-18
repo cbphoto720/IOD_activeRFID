@@ -107,6 +107,7 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [ ] snail trail fixed size (2hr max or # of entries max)
 - [ ] dir-antenna graph with faster refresh rate
 - [ ] how to handle RSSI histogram refresh
+- [ ] default values changed in .txt doc (com ports, display previous cobbles, snail trail timeout, etc..)
 - [ ] import table to display previous cobble positions
 
 
@@ -132,7 +133,8 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - MOPs_SD_County.kml - MOP lines in SD
 - MOPelementreducer.m - fcn. to format MOP lines into 1 graphical element
 
-
+# Questions
+- log iG8 time in UTC vs using matlab/computer
 
 # Notes
 ## Data output
