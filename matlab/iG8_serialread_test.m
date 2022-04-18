@@ -59,11 +59,15 @@ if gps.sersplit{1}=="$GPGGA"
         datalake.lat=str2double(gps.sersplit{3}(1:2)) + str2double(gps.sersplit{3}(3:13))/60;
     elseif gps.sersplit{4}=="S"
         datalake.lat=-str2double(gps.sersplit{3}(1:2)) + str2double(gps.sersplit{3}(3:13))/60;
+    else
+        datalake.lat=nan;
     end
     if gps.sersplit{6}=="W"
         datalake.lon=str2double(gps.sersplit{5}(1:3)) + str2double(gps.sersplit{5}(4:14))/60;
     elseif gps.sersplit{6}=="E"
         datalake.lon=360-str2double(gps.sersplit{5}(1:3)) + str2double(gps.sersplit{5}(4:14))/60;
+    else
+        datalake.lon=nan;
     end
 
 
