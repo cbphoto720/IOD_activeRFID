@@ -488,3 +488,16 @@ kmlwrite("testcobblepointsDATE.kml",GT)
 importkml=kml2struct('testcobblepointsDATE.kml');
 
 scatter([importkml.Lon],[importkml.Lat])
+
+%% test
+% snail=nan(10,1);
+
+% snail=[2;snail(1:end-1)]
+
+app.snail=nan(14400,2);
+%%
+app.snail(1,:)=[1,2]; % Initialize snail trail
+
+%%
+app.snail=[[2,3];app.snail(1:end-1,:)]
+

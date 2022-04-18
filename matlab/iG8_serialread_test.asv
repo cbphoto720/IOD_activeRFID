@@ -63,9 +63,9 @@ if gps.sersplit{1}=="$GPGGA"
         datalake.lat=nan;
     end
     if gps.sersplit{6}=="W"
-        datalake.lon=-str2double(gps.sersplit{5}(1:3)) - str2double(gps.sersplit{5}(4:14))/60;
-    elseif gps.sersplit{6}=="E"
         datalake.lon=str2double(gps.sersplit{5}(1:3)) + str2double(gps.sersplit{5}(4:14))/60;
+    elseif gps.sersplit{6}=="E"
+        datalake.lon=360-str2double(gps.sersplit{5}(1:3)) + str2double(gps.sersplit{5}(4:14))/60;
     else
         datalake.lon=nan;
     end
@@ -74,13 +74,6 @@ if gps.sersplit{1}=="$GPGGA"
 else
     % GPS read error
 end
-
-%% testing
-nowutc=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];
-
-app.GPStime=datalake.time(end-2:end-1)
-
-checks(1)=all(nowutc(1:end-3)==app.GPStime(1:end-6));
 
 %% Functions
 function iG8CallbackSerial(src,~)
