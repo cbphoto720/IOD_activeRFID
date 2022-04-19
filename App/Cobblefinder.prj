@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="164639120" file="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder.prj" location="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App" name="Cobblefinder" preferred-package-location="C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App\Cobblefinder\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="1203605918" file="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder.prj" location="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App" name="Cobblefinder" preferred-package-location="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Cobblefinder</param.appname>
     <param.icon>${PROJECT_ROOT}\Cobblefinder_resources\icon.ico</param.icon>
     <param.icons>
@@ -80,13 +80,13 @@
       <file>${PROJECT_ROOT}\Cobblefinder.mlapp</file>
     </fileset.main>
     <fileset.resources>
+      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\kml2struct\kml2struct.m</file>
+      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\taglist.txt</file>
       <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\MOP\MOPs_SD_County.kml</file>
     </fileset.resources>
     <fileset.package />
     <fileset.depfun>
-      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\kml2struct\kml2struct.m</file>
       <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\MOPelementreducer.m</file>
-      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\taglist.txt</file>
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="readme.txt" optional="true">C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder\for_testing\readme.txt</file>
