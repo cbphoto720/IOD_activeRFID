@@ -1,15 +1,20 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="164639120" file="C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App\Cobblefinder.prj" location="C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App" name="Cobblefinder" preferred-package-location="C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App\Cobblefinder\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="1203605918" file="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder.prj" location="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App" name="Cobblefinder" preferred-package-location="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Cobblefinder</param.appname>
-    <param.icon />
-    <param.icons />
-    <param.version>1.0</param.version>
+    <param.icon>${PROJECT_ROOT}\Cobblefinder_resources\icon.ico</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\Cobblefinder_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\Cobblefinder_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\Cobblefinder_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\Cobblefinder_resources\icon_16.png</file>
+    </param.icons>
+    <param.version>2.0</param.version>
     <param.authnamewatermark>Carson Black</param.authnamewatermark>
     <param.email>ccblack@ucsd.edu</param.email>
     <param.company>Scripps Institute of Oceanography</param.company>
     <param.summary>GUI interface to find fake cobblestones with active RFID tags</param.summary>
-    <param.description>first export of program (a test)</param.description>
-    <param.screenshot />
+    <param.description />
+    <param.screenshot>${PROJECT_ROOT}\Cobble_rfid_splash.png</param.screenshot>
     <param.guid />
     <param.installpath.string>\Scripps Institute of Oceanography\Cobblefinder\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
@@ -24,8 +29,8 @@
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
     <param.support.packages />
-    <param.web.mcr>true</param.web.mcr>
-    <param.package.mcr>false</param.package.mcr>
+    <param.web.mcr>false</param.web.mcr>
+    <param.package.mcr>true</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>Cobble-MLruntime</param.package.mcr.name>
@@ -43,13 +48,10 @@
 	 -?  print help on how to use the application 
 	 input arguments</param.help.text>
     <unset>
-      <param.icon />
-      <param.icons />
-      <param.version />
       <param.authnamewatermark />
       <param.email />
       <param.company />
-      <param.screenshot />
+      <param.description />
       <param.guid />
       <param.installpath.string />
       <param.installpath.combo />
@@ -64,8 +66,6 @@
       <param.user.defined.mcr.options />
       <param.target.type />
       <param.support.packages />
-      <param.web.mcr />
-      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.no.mcr.name />
@@ -80,18 +80,18 @@
       <file>${PROJECT_ROOT}\Cobblefinder.mlapp</file>
     </fileset.main>
     <fileset.resources>
-      <file>C:\Users\ccblack\Documents\Carson\IOD_activeRFID\MOP\MOPs_SD_County.kml</file>
+      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\kml2struct\kml2struct.m</file>
+      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\taglist.txt</file>
+      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\MOP\MOPs_SD_County.kml</file>
     </fileset.resources>
     <fileset.package />
     <fileset.depfun>
-      <file>C:\Users\ccblack\Documents\Carson\IOD_activeRFID\matlab\kml2struct\kml2struct.m</file>
-      <file>C:\Users\ccblack\Documents\Carson\IOD_activeRFID\matlab\MOPelementreducer.m</file>
-      <file>C:\Users\ccblack\Documents\Carson\IOD_activeRFID\matlab\taglist.txt</file>
+      <file>C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\matlab\MOPelementreducer.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="splash.png" optional="false">C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App\Cobblefinder\for_testing\splash.png</file>
-      <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="Cobblefinder.exe" optional="false">C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App\Cobblefinder\for_testing\Cobblefinder.exe</file>
-      <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="readme.txt" optional="true">C:\Users\ccblack\Documents\Carson\IOD_activeRFID\App\Cobblefinder\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="readme.txt" optional="true">C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="Cobblefinder.exe" optional="false">C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder\for_testing\Cobblefinder.exe</file>
+      <file location="${PROJECT_ROOT}\Cobblefinder\for_testing" name="splash.png" optional="false">C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\App\Cobblefinder\for_testing\splash.png</file>
     </build-deliverables>
     <workflow />
     <matlab>

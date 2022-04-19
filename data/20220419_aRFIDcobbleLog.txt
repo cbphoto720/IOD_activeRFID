@@ -1,0 +1,64 @@
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+UTCtime, Tag_ID#, Lat, Lon
+STARTUP : UTCtime, Tag_ID#, Lat, Lon
+20220419T183254.00Z		477764		32.8671		-117.2519
+20220419T183259.00Z		477764		NaN		NaN		User removed logged position
+20220419T183316.00Z		477764		32.8671		-117.2519
+STARTUP : UTCtime, Tag_ID#, Lat, Lon
+STARTUP  UTCtime, Tag_ID#, Lat, Lon
+STARTUP  UTCtime, Tag_ID#, Lat, Lon
+STARTUP  UTCtime, Tag_ID#, Lat, Lon
+STARTUP 20220419T183809Z UTCtime, Tag_ID#, Lat, Lon
+STARTUP@20220419T183831Z UTCtime, Tag_ID#, Lat, Lon
+STARTUP@20220419T183959Z UTCtime, Tag_ID#, Lat, Lon, notes
+STARTUP@20220419T184111Z UTCtime, Tag_ID#, Lat, Lon, notes
+20220419T184335.00Z		477766		32.8671		-117.2519		User saved cobble position
+20220419T184338.00Z		477766		NaN		NaN		User removed logged position
+20220419T184341.00Z		477766		32.8671		-117.2519		User saved cobble position
+STARTUP@20220419T184724Z UTCtime, Tag_ID#, Lat, Lon, notes
+SHUTDOWN@20220419T184746Z

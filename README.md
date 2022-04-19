@@ -60,7 +60,6 @@ Coin tags have ~40m range, so direction finding unlikely without dir. antenna wi
   - when communicating with multiple tags, expect delays (NaN values)
   - periodic drops in signal are expected
   - handle RSSI overfill with a separate timer
-- [ ] implement a "guessing" feature that paints in a swatch of potential RFID locations based on GPS data
 - [ ] import coastline
 - [ ] For saving data in the same folder as the installed app (But I think matlab automatic directy path is to where app in launched):
 
@@ -96,19 +95,22 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [save geospatial table](https://www.mathworks.com/help/map/create-geospatial-tables.html)
 
 ##### 2022-04-04 Feature Goals
-- [ ] mark cobble button saves datalog to table (map with webmap)
-  - [ ] added datalog.datalake: a table variable to organize information
-  - [ ] translate current datalog information into datalake table
-- [ ] GPS log position
+- [x] mark cobble button saves datalog to table
+- [x] GPS log position
   - Sample GPS line:
   <br><code>$GPGGA,210302.00,3252.02652259,N,11715.11341598,W,1,20,0.7,53.759,M,-35.060,M,,*63
 <br> [GMT time, lat, N, lon, W, 1, #satallites, other info, checksum]
   </code>
-- [ ] snail trail fixed size (2hr max or # of entries max)
+  - [ ] utilize GPS checksum & numsats
+- [x] snail trail fixed size (2hr max or # of entries max)
 - [ ] dir-antenna graph with faster refresh rate
-- [ ] how to handle RSSI histogram refresh
+- [x] how to handle RSSI histogram refresh
 - [ ] default values changed in .txt doc (com ports, display previous cobbles, snail trail timeout, etc..)
 - [ ] import table to display previous cobble positions
+- [x] ability to delete logged cobbles
+- [ ] Turn off RSSIscat should stop logging for performance reasons (perhaps enable a switch once you are getting close)
+  - [ ] RSSIscat should only display location of maximum RSSI for each cobble
+- [ ] 
 
 
 
@@ -134,7 +136,9 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - MOPelementreducer.m - fcn. to format MOP lines into 1 graphical element
 
 # Questions
-- log iG8 time in UTC vs using matlab/computer
+- log iG8 time in UTC vs using matlab/computer time
+- use checksum from iG8 messages
+- display # of satallites/gps quality from iG8?
 
 # Notes
 ## Data output

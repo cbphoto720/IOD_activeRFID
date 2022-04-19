@@ -489,15 +489,22 @@ importkml=kml2struct('testcobblepointsDATE.kml');
 
 scatter([importkml.Lon],[importkml.Lat])
 
-%% test
-% snail=nan(10,1);
-
-% snail=[2;snail(1:end-1)]
-
-app.snail=nan(14400,2);
 %%
-app.snail(1,:)=[1,2]; % Initialize snail trail
+rssi=[113, 109, 127, 133, 147, 0, 0, 146, 0, 127, 125, 117, 111, 112, 111, 0, 0, 0, 121, 124, 0, 129, 0, 0, 0, 0, 0, 133, 145, 151, 152, 0, 133, 0, 112, 98, 0, 99, 0, 0, 101, 103, 106, 109, 0];
+rssiON=rssi;
+rssiON(rssiON==0)=nan;
+rssiON=movmean(rssiON,3,'omitnan')
 
-%%
-app.snail=[[2,3];app.snail(1:end-1,:)]
+plot(rssi)
+hold on
+plot(rssiON)
+meanie=mean(rssiON,'omitnan');
+minnie=min(rssiON);
+maxie=max(rssiON);
+
+off=0.3
+ylim([meanie*(1-off), meanie*(1+off)])
+
+
+
 
