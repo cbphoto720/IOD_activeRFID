@@ -110,8 +110,15 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [x] ability to delete logged cobbles
 - [ ] Turn off RSSIscat should stop logging for performance reasons (perhaps enable a switch once you are getting close)
   - [ ] RSSIscat should only display location of maximum RSSI for each cobble
-- [ ] 
 
+##### 2022-04-27
+- [ ] getexecutabllefolder for deployed app
+- [ ] fix cobble log for import functionality (import previous cobble positions)
+- [ ] use iG8 and simulate shutdown & reboot
+- [ ] process other iG8 information to display to user
+- [ ] more antenna visualizations
+- [ ] logged cobble plays chime
+- [ ] RSSIscat only shows best known position (largest RSSI value location)
 
 
 # Program Information
@@ -182,7 +189,8 @@ DIY options
  - [AppDesigner TmrFcn]() - Correct order of function arguments:  
     <code>function example(app, obj, event, string_arg)  
     &nbsp;&nbsp;&nbsp; ... do stuff \
-    end</code>
+    end</code><br>
+ - test
 
 ### CDF Notes
 The common data format NASA standard in data storage.
