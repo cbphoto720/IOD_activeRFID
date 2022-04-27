@@ -191,6 +191,7 @@ DIY options
     &nbsp;&nbsp;&nbsp; ... do stuff \
     end</code><br>
  - test
+ - [matlab appdesigner debugging tutorial](https://www.mathworks.com/matlabcentral/answers/499633-how-to-view-parameter-values-while-debugging-in-app-designer)
 
 ### CDF Notes
 The common data format NASA standard in data storage.
