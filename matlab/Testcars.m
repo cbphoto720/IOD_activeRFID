@@ -465,6 +465,7 @@ scatter([importkml.Lon],[importkml.Lat])
 %{
 Example Geographic table from ML:
 
+% Create Geospatial Table from Arrays
 openExample('map/CreateGeospatialTableFromArraysExample')
 
 use this exact format and save cobble positions as points or as a line with
