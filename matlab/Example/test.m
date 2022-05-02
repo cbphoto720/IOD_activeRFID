@@ -27,3 +27,5 @@ fclose(fid)
 stop(timerfind) % stop all timers
 delete(timerfind)
 clear timerfind
+
+clear SerialObj

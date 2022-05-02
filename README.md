@@ -120,6 +120,11 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [ ] logged cobble plays chime
 - [ ] RSSIscat only shows best known position (largest RSSI value location)
 
+# Build Information
+## Cobble Casting
+##### 2022-05-02
+- Brian start casting 1st rock with active RFID tag inside
+
 
 # Program Information
 #### Global Variables
