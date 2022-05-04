@@ -75,6 +75,20 @@ else
     % GPS read error
 end
 
+%% Fast checksum **not working
+i=1; %data2 index of line to test
+
+a=strfind(data2(i),'$');
+z=strfind(data2(i),'*');
+
+dataline=data2{i};
+datatosum=dataline(a+1:z-1); % trim to $ and *
+
+c=strfind(datatosum,',');
+datatosum(c)='' % remove delimiters
+
+dec2hex(sum(datatosum))
+
 %% testing
 nowutc=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];
 
