@@ -515,5 +515,37 @@ app.GPStime=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];;
 cobblelog=[app.GPStime , num2str(20) , num2str(32) , num2str(-117) , "User saved cobble position"];
 writematrix(cobblelog,filename,'Delimiter','tab','WriteMode','append');
 
+%%
 
+%# sample data
+x = 1:100;
+left = randn(100,1);
+% right = cumsum(rand(100,1)-0.5);
+
+%# build axes positions
+hBig = [subplot(121) subplot(122)];         %# create subplots
+posBig = get(hBig, 'Position');             %# record their positions
+delete(hBig)                                %# delete them
+posSmall{1} = [0.275 0.63 0.16 0.24];
+a=0.3;
+posSmall{2} = [0.717 0.13 0.16 0.24];
+
+%# create axes (big/small)
+hAxB(1) = axes('Position',posBig{1});
+hAxB(2) = axes('Position',posBig{2});
+hAxS(1) = axes('Position',posSmall{1});
+hAxS(2) = axes('Position',posSmall{2});
+
+%# plot
+plot(hAxB(1), x, left, 'b');
+plot(hAxB(2), x, right, 'b');
+plot(hAxS(1), x, left, 'r');
+plot(hAxS(2), x, right, 'r');
+
+%# set axes properties
+set(hAxB, 'XLim',[1 100], 'YLim',[-10 10]);
+set(hAxS , 'Color','none', 'XAxisLocation','top', 'YAxisLocation','right');
+set(hAxS , 'Color','b')
+%%
+histogram(hAxS(2),left)
 
