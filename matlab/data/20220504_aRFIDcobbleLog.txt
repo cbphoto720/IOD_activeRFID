@@ -1,0 +1,19 @@
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220504T233609Z	NaN	NaN	NaN	NaN
+20220504T233612Z	477764	999	999	User removed cobble position (fill values)
+20220504T233612Z	477764	999	999	User removed cobble position (fill values)
+20220504T233613Z	477764	999	999	User removed cobble position (fill values)
+20220504T233614Z	477765	999	999	User removed cobble position (fill values)
+20220504T233614Z	477765	999	999	User removed cobble position (fill values)
+20220504T233614Z	477765	999	999	User removed cobble position (fill values)
+20220504T233615Z	477776	999	999	User removed cobble position (fill values)
+20220504T233617Z	477772	999	999	User removed cobble position (fill values)
+20220504T233618Z	477785	999	999	User removed cobble position (fill values)
+20220504T233622Z	477789	999	999	User removed cobble position (fill values)
+SHUTDOWN@20220504T233623Z	NaN	NaN	NaN	NaN
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220504T233626Z	NaN	NaN	NaN	NaN
+20220504T233630Z	477776	999	999	User removed cobble position (fill values)
+20220504T233632Z	477784	999	999	User removed cobble position (fill values)
+20220504T233634Z	477788	999	999	User removed cobble position (fill values)
+SHUTDOWN@20220504T233634Z	NaN	NaN	NaN	NaN

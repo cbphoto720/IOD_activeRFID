@@ -465,6 +465,7 @@ scatter([importkml.Lon],[importkml.Lat])
 %{
 Example Geographic table from ML:
 
+% Create Geospatial Table from Arrays
 openExample('map/CreateGeospatialTableFromArraysExample')
 
 use this exact format and save cobble positions as points or as a line with
@@ -505,6 +506,14 @@ maxie=max(rssiON);
 off=0.3
 ylim([meanie*(1-off), meanie*(1+off)])
 
+%% Writematrix
+filename=fullfile(GetExecutableFolder(),'data',[datestr(datetime('now'),'yyyymmdd'),'_aRFIDcobbleLog',]);
+
+app.GPStime=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];;
+
+
+cobblelog=[app.GPStime , num2str(20) , num2str(32) , num2str(-117) , "User saved cobble position"];
+writematrix(cobblelog,filename,'Delimiter','tab','WriteMode','append');
 
 
 

@@ -1,3 +1,7 @@
 
 matlab/Testcars.asv
 App/Cobblefinder/for_redistribution/Cobble-MLruntime.exe
+App/Cobblefinder/
+*.exe
+App/Cobblefinder/for_redistribution_files_only/Cobblefinder.exe
+App/Cobblefinder/for_testing/Cobblefinder.exe
