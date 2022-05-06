@@ -1,0 +1,6 @@
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220505T191440Z	NaN	NaN	NaN	NaN
+20220505T220055.00Z	477764	999	999	User removed cobble position (fill values)
+20220505T220055.00Z	477764	999	999	User removed cobble position (fill values)
+20220505T220055.00Z	477783	999	999	User removed cobble position (fill values)
+SHUTDOWN@20220505T191502Z	NaN	NaN	NaN	NaN
