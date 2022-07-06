@@ -549,3 +549,18 @@ set(hAxS , 'Color','b')
 %%
 histogram(hAxS(2),left)
 
+
+%% Scratch paper
+
+a=zeros(45,32)';
+a(1,1)=10;
+b=a;
+b(10,1)=90;
+b(10,6)=120;
+axtest=axes()
+spectrum=pcolor(axtest,a);
+colorbar
+
+%%
+set(spectrum,'CData',b);
+drawnow;
