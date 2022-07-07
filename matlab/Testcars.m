@@ -564,3 +564,26 @@ colorbar
 %%
 set(spectrum,'CData',b);
 drawnow;
+
+%% YagiRSSI_sample
+clf
+figure(1)
+colormap(flipud(lajolla10))
+
+subplot(211)
+a=[YagiRSSI_sample]';
+% spectrum=pcolor(axtest,a);
+h=pcolor(a)
+% set(h, 'EdgeColor', 'none');
+colorbar
+
+subplot(212)
+a1=[YagiRSSI_sample,zeros(size(YagiRSSI_sample,1),1)]';
+h1=pcolor(a1)
+colorbar
+% set(h1, 'EdgeColor', 'none');
+drawnow
+
+%%
+set(spectrum,'CData',b);
+drawnow;
