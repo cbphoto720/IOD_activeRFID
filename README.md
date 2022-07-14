@@ -1,6 +1,6 @@
 
 # IOD_activeRFID
-A GUI to help the user track active RFID tags.  In addition to
+A GUI to help the user track active RFID tags.  The program will read serial inputs from an iG8a GPS and an ELA SCIEL-READER-LITE for the 433mhz Yagi antenna.  This serial information is parsed and then displayed to the user through a GPS map as well as a variety of signal strength indicators.
 
 Active cobble RFID tag GUI for detection, mapping, and data-logging.
 
@@ -9,18 +9,12 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 # Overview for Survey conducted to find active cobbles
 ###### End Goal
 - arrive at site
-- use manual directional antenna + electronic compass / doppler or Adcock array to detect initial signal bearings
-  - bearing & RSII information compiled in GUI to give predicted locations of tag
-- walk toward predictions with omnidirectional antenna while monitoring RSSI
-- program will find location of peak RSSI by instructing user to walk in specific direction
+- use manual directional antenna detect initial signal direction
+  - RSII information compiled in GUI to indicate likely RFID position
+- walk toward predictions while monitoring RSSI
+- use a physical attenuator during approach to hone in on the closest position of the tag
 - logged cobble will then be ignored on RSSI bar graph and will be added to a log
 - move on to next cobble
-
-
-###### Simplified
-Coin tags have ~40m range, so direction finding unlikely without dir. antenna with high gain.
-- walk pattern with omni antenna and prod around when high RSSI is detected
-
 
 # Version Control
 ## V1.1
@@ -35,6 +29,9 @@ Coin tags have ~40m range, so direction finding unlikely without dir. antenna wi
 
 
 # Build Information
+- 433 MHz Active RFID
+  - 15m reliable in range (Either inside cobble or bare tag)
+
 ## Cobble Casting
 ##### 2022-05-02
 - Brian start casting 1st rock with active RFID tag inside
@@ -42,7 +39,7 @@ Coin tags have ~40m range, so direction finding unlikely without dir. antenna wi
 
 # Program Information
 #### Global Variables
-*No longer applicable to program.  (Reformat to include timer variables as well as program log outuput.*
+*No longer applicable to program.  (Reformat to include timer variables as well as program log outuput)*
 - Timestamp
 - TagID & RSSI (for directional & omni-dir antenna)
 - GPS coord
@@ -53,7 +50,7 @@ Coin tags have ~40m range, so direction finding unlikely without dir. antenna wi
 - %speed - a potential improvement
 - %stats - code purely to asses the performance of features
 - %test - a temporary element
-- %debug - facilitate tinkering
+- %debug - facilitate tinkering (broken elements of code)
 - %current - a feature I am CURRENTly working on
 
 #### Files required
@@ -62,9 +59,12 @@ Coin tags have ~40m range, so direction finding unlikely without dir. antenna wi
 - MOPelementreducer.m - fcn. to format MOP lines into 1 graphical element
 
 # Questions
-- log iG8 time in UTC vs using matlab/computer time
-- use checksum from iG8 messages
-- display # of satallites/gps quality from iG8?
+- [x] log iG8 time in UTC vs using matlab/computer time
+  - use UTC
+- [x] use checksum from iG8 messages
+  - Do not use checksum
+- [x] display # of satallites/gps quality from iG8?
+  - Not required
 
 # Notes
 ## Data output
