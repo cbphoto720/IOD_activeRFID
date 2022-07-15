@@ -83,9 +83,10 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [x] RSSIscat only shows best known position (largest RSSI value location)
 
 ##### 2022-07-14
-- [ ] pcolor time series
+- [x] pcolor time series
   - pcolor fixed color scale (with colorbar)
   - la jolla color map
+  - **! Colorbar is not fixed!  Color is scaling despite limits being set**
 - [ ] antenna plots on same page as GPS
 - [ ] Yagi plt fixed y-axis
 - [ ] import previous cobble positions
