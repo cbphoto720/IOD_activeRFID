@@ -33,6 +33,10 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
   - 15m reliable in range (Either inside cobble or bare tag)
 
 ## Cobble Casting
+### Materials
+- [ ] [Masonry Angle grinder Blade](https://www.amazon.com/dp/B00004RH8Y?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+
+
 ##### 2022-05-02
 - Brian start casting 1st rock with active RFID tag inside
 
