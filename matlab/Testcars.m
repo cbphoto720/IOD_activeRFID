@@ -587,3 +587,26 @@ drawnow
 %%
 set(spectrum,'CData',b);
 drawnow;
+
+%% iG8a Serial obj
+
+iG8mssg.SVaquire="$GPGGA,,,,,,,,,,M,,M,,*56";
+iG8mssg.GPS="$GPGGA,220055.00,3252.02728572,N,11715.11190040,W,1,20,0.7,51.133,M,-35.060,M,,*65";
+
+
+%% Input parser
+% https://www.mathworks.com/help/matlab/ref/inputparser.html#d123e752705
+   defaultHeight = 1;
+   defaultUnits = 'inches';
+   defaultShape = 'rectangle';
+   expectedShapes = {'square','rectangle','parallelogram'};
+
+   p = inputParser;
+   validScalarPosNum = @(x) isnumeric(x) && isscalar(x) && (x > 0);
+   addRequired(p,'width',validScalarPosNum);
+   addOptional(p,'height',defaultHeight,validScalarPosNum);
+   addParameter(p,'units',defaultUnits,@isstring);
+   addParameter(p,'shape',defaultShape,...
+                 @(x) any(validatestring(x,expectedShapes)));
+   parse(p,width,varargin{:});
+
