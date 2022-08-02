@@ -35,7 +35,7 @@ if isempty(varargin) | strcmp(varargin,expectedoptionalinput{1})
     % Run default iG8a output (pass an output string of the full read line)
     % read the serial data and output the full string
 
-%     varargout={scandata};
+    varargout={scandata};
     
 elseif strcmp(varargin,expectedoptionalinput{2})
     % only ouput Lat, Lon, Time, # Sats

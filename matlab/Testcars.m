@@ -610,3 +610,8 @@ iG8mssg.GPS="$GPGGA,220055.00,3252.02728572,N,11715.11190040,W,1,20,0.7,51.133,M
                  @(x) any(validatestring(x,expectedShapes)));
    parse(p,width,varargin{:});
 
+%% ______ ig8aserialread ______
+
+iG8a_serialobj=configureig8aserialread('COM1');
+%%
+outputline=ig8aserialread(iG8a_serialobj)
