@@ -25,7 +25,12 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
   - mark location on GPSplot
 
 ## V1.2
-- GPS com port  
+- GPS com port
+
+## V2.1
+- GUI overhall
+- Pcolor plot
+-
 
 
 # Build Information
