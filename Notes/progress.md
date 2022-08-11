@@ -15,8 +15,8 @@
 - [x] measure performance on a toughbook!
 - [x] compile all information in a single variable.  Or choose to have tag RSSI recorded separately to find a creative way to store sparse records.  Index this record with a common timestamp to pull GPS data or simply re-write GPS info in RSSI data for performance.
 - [x] Next, implement prev tag/next tag to focus bar graph color/RSSIdot display
-- [ ] Log GPS serial positions from IG8 (talk to Rob)
-- [ ] Start long dist testing by faking data and trying to display it all at once
+- [x] Log GPS serial positions from IG8 (talk to Rob)
+- [x] Start long dist testing by faking data and trying to display it all at once
 
 **Extra features**
 - [ ] RSSI signal interpretation and thresholds to ensure fast acquisition of data.
