@@ -615,3 +615,13 @@ iG8mssg.GPS="$GPGGA,220055.00,3252.02728572,N,11715.11190040,W,1,20,0.7,51.133,M
 iG8a_serialobj=configureig8aserialread('COM1');
 %%
 outputline=ig8aserialread(iG8a_serialobj)
+
+%% Boolean varialble test
+ gpscords=[4 1; 5 5; 32 23; 24 52; 215 125];
+ len=length(gpscords);
+
+ bools=false(len,1);
+ bools(1)=1;
+ bools(4)=1;
+
+ gpscords(bools,2)
