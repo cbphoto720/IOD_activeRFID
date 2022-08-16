@@ -454,6 +454,17 @@ sound(s,fs)
 
 plot(s)
 
+%% Sound chime test 2
+dur=0.1;
+[a,~]=playchime(300,dur);
+[b,fs]=playchime(500,dur);
+[c,fs]=playchime(700,dur);
+[d,fs]=playchime(900,dur*0.9);
+
+%% halelujah
+load handel
+sound(y,Fs)
+
 %% Cobble positions.kml _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 
 % _____ Import Previous Positions _____
@@ -625,3 +636,5 @@ outputline=ig8aserialread(iG8a_serialobj)
  bools(4)=1;
 
  gpscords(bools,2)
+
+ %% 
