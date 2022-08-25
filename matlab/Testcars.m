@@ -637,4 +637,14 @@ outputline=ig8aserialread(iG8a_serialobj)
 
  gpscords(bools,2)
 
- %% 
+ %% timer wait test
+clc
+
+Atimer=timer('Name','a_timer',...
+                'ExecutionMode','singleShot',...
+                'StartFcn',@(x,y)disp('starting a_timer'),...
+                'StartDelay',5,...
+                'TimerFcn',@(x,y)disp('done with a_timer'));
+start(Atimer)
+wait(Atimer)
+disp('will not execute until we are "done with a_timer"')

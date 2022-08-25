@@ -1,3 +1,8 @@
+# Publishing code:
+
+- turn off developer mode
+- disable GPS bypass switch?
+
 # Journal
 - [x] Research Antenna
 - [x] test script to read serial data

@@ -1,0 +1,23 @@
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220824T203514Z	NaN	NaN	NaN	NaN
+20220824T220055.00Z	477764	32.8671	-117.2519	User saved cobble position
+20220824T220055.00Z	477764	999	999	User removed cobble position (999=fill values)
+SHUTDOWN@20220824T203624Z	NaN	NaN	NaN	NaN
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220824T203757Z	NaN	NaN	NaN	NaN
+477764	32.8664	-117.254	User saved cobble position
+20220824T203828Z	477764	999	999	User removed cobble position (999=fill values)
+477776	32.8664	-117.254	User saved cobble position
+20220824T203839Z	477776	999	999	User removed cobble position (999=fill values)
+20220824T220055.00Z	477768	32.8671	-117.2519	User saved cobble position
+20220824T220055.00Z	477768	999	999	User removed cobble position (999=fill values)
+20220824T220055.00Z	477768	32.8671	-117.2519	User saved cobble position
+20220824T220055.00Z	477768	999	999	User removed cobble position (999=fill values)
+20220824T220055.00Z	477768	32.8671	-117.2519	User saved cobble position
+20220824T220055.00Z	477768	999	999	User removed cobble position (999=fill values)
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220824T211027Z	NaN	NaN	NaN	NaN
+SHUTDOWN@20220824T211052Z	NaN	NaN	NaN	NaN
+UTCtime	TagID	Lat	Lon	notes
+STARTUP@20220824T212738Z	NaN	NaN	NaN	NaN
+SHUTDOWN@20220824T212919Z	NaN	NaN	NaN	NaN
