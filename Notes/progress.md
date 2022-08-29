@@ -1,6 +1,7 @@
 # Publishing code:
 
 - turn off developer mode
+- turn of folder dependancies
 - disable GPS bypass switch?
 
 # Journal
