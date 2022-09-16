@@ -1,15 +1,15 @@
 function aRFIDcobbleLog1 = readARFIDcobbleLog(filename, dataLines)
 %IMPORTFILE Import data from a text file
-%  ARFIDCOBBLELOG1 = IMPORTFILE(FILENAME) reads data from text file
+%  ARFIDCOBBLELOG1 = readARFIDcobbleLog(FILENAME) reads data from text file
 %  FILENAME for the default selection.  Returns the data as a table.
 %
-%  ARFIDCOBBLELOG1 = IMPORTFILE(FILE, DATALINES) reads data for the
+%  ARFIDCOBBLELOG1 = readARFIDcobbleLog(FILE, DATALINES) reads data for the
 %  specified row interval(s) of text file FILENAME. Specify DATALINES as
 %  a positive scalar integer or a N-by-2 array of positive scalar
 %  integers for dis-contiguous row intervals.
 %
 %  Example:
-%  aRFIDcobbleLog1 = importfile("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt", [2, Inf]);
+%  aRFIDcobbleLog1 = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt", [2, Inf]);
 %
 %  See also READTABLE.
 %

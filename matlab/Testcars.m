@@ -648,3 +648,15 @@ Atimer=timer('Name','a_timer',...
 start(Atimer)
 wait(Atimer)
 disp('will not execute until we are "done with a_timer"')
+
+%%
+test.prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt");
+
+%%
+[fid, msg]=fopen('taglist.txt','r');
+if fid < 0
+    error('Failed to open file "%s" because: "%s"', filename, msg);
+end
+C = textscan(fid,'%s');
+taglist = hex2dec(C{1}); % aquire tag IDs
+fclose(fid);
