@@ -1,10 +1,11 @@
 %% Initialize
 
 clear all
-COM="COM4";
 addpath(genpath('C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID'))
 pause(0.05)
 %% 
+COM="COM4";
+
 % Import tag list
 [fid, msg]=fopen('taglist.txt','r');
 if fid < 0
@@ -649,8 +650,16 @@ start(Atimer)
 wait(Atimer)
 disp('will not execute until we are "done with a_timer"')
 
-%%
-test.prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt");
+%% Read in ARFID datalog
+num=2;
+
+switch num
+    case 1
+        prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt"); %example
+    case 2
+        prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220919.txt"); % with logged cobbles
+end
+clear num
 
 %%
 [fid, msg]=fopen('taglist.txt','r');
@@ -660,3 +669,27 @@ end
 C = textscan(fid,'%s');
 taglist = hex2dec(C{1}); % aquire tag IDs
 fclose(fid);
+clear C ans fid msg
+
+%% Interpret ARFID deletions
+%interpret file date
+filename="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220919.txt";
+date=extractAfter(filename,strlength(filename)-12);
+date=char(date);
+date(regexp(date,'[.]txt'):end)=[];
+
+%Preallocate
+out=table('Size',[length(taglist),5],'VariableNames',["UTCtime", "TagID", "Lat", "Lon", "notes"],'VariableTypes',["string", "double", "double", "double", "string"]);
+
+for i=1:length(taglist) % iterate taglist to find last log entry (deletion or flag)
+    ind=find(prevARFID.TagID==taglist(i),1,"last");
+    if isempty(ind) || prevARFID.Lat(ind)==999 %find deletions & missing tags
+        out(i,:)=num2cell(nan(1,5));
+        out.TagID(i)=taglist(i);
+    elseif prevARFID.Lat(ind)<=90 % find flags
+        out(i,:)=prevARFID(ind,:);
+    end
+end
+clear i ind
+out.UTCtime=fillmissing(out.UTCtime,'constant',string(date)); %fill missing dates
+out.notes=fillmissing(out.notes,'constant',""); %fill missing notes
