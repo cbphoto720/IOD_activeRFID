@@ -78,6 +78,7 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 # Notes
 ## Data output
 - ISO 8601 date formet: **yyyymmddThhmmssZ** (z for UTC time)
+
 ## GPS
 - [iG8 serial data format $GPGGA](https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm)
 
