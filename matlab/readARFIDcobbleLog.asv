@@ -3,10 +3,13 @@ function outtable = readARFIDcobbleLog(filename, datatype,taglist)
 %  ARFIDCOBBLELOG1 = readARFIDcobbleLog(FILENAME) reads data from text file
 %  FILENAME for the default selection.  Returns the data as a table.
 %
-%  ARFIDCOBBLELOG1 = readARFIDcobbleLog(FILE, datatype,taglist) reads data in "raw" format or "standard" output
+%  ARFIDCOBBLELOG1 = readARFIDcobbleLog(FILE, DATALINES) reads data for the
+%  specified row interval(s) of text file FILENAME. Specify DATALINES as
+%  a positive scalar integer or a N-by-2 array of positive scalar
+%  integers for dis-contiguous row intervals.
 %
 %  Example:
-%  aRFIDcobbleLog1 = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt");
+%  aRFIDcobbleLog1 = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt", [2, Inf]);
 %
 %  See also READTABLE.
 %
@@ -22,29 +25,11 @@ end
 
 % If taglist is not specified, use standard taglist
 if ~exist('taglist','var')
-    taglist=[477764:477793]'; %ARFID taglist set 1
-else
-    [fid, msg]=fopen(taglist,'r');
-    if fid < 0
-        error('Failed to open file "%s" because: "%s"', filename, msg);
-    end
-    C = textscan(fid,'%s');
-    taglist = hex2dec(C{1}); % aquire tag IDs
-    fclose(fid);
-    clear C ans fid msg
+    taglist=[477764:477793]'; %ARFID taglist set
 end
 
 %current -inputparser
-p=inputParser;
-validfilename=@(x) isfile(x);
-addRequired(p,'filename',validfilename);
-expectedDatatypes = {'raw','standard'};
-addRequired(p,'datatype',@(x) any(validatestring(x,expectedDatatypes)));
-validtaglist=@(x) ismatrix(x) && or(size(x,1)==1 && size(x,2)~=1 , size(x,2)==1 && size(x,1)~=1);
-addRequired(p,'taglist',validtaglist);
-
-parse(p,filename,datatype,taglist);
-
+p=in
 
 %% Set up the Import Options and import the data
 opts = delimitedTextImportOptions("NumVariables", 5);

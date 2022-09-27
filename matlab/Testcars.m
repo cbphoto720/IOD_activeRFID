@@ -657,7 +657,7 @@ switch num
     case 1
         prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt"); %example
     case 2
-        prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220919.txt"); % with logged cobbles
+        prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220919.txt","standard"); % with logged cobbles
 end
 clear num
 
