@@ -693,3 +693,11 @@ end
 clear i ind
 out.UTCtime=fillmissing(out.UTCtime,'constant',string(date)); %fill missing dates
 out.notes=fillmissing(out.notes,'constant',""); %fill missing notes
+%%
+
+ [file,path] = uigetfile('*.txt');
+            if isequal(file,0)
+               disp('canceled')
+            else
+               disp(['User selected ', fullfile(path,file)]);
+            end
