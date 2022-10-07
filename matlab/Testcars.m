@@ -701,3 +701,8 @@ out.notes=fillmissing(out.notes,'constant',""); %fill missing notes
             else
                disp(['User selected ', fullfile(path,file)]);
             end
+%%
+a=[1,0,0,0,1];
+b=[0,1,0,0,1];
+
+~and(a,b)
