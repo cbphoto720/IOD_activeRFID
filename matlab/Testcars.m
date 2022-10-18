@@ -706,3 +706,18 @@ a=[1,0,0,0,1];
 b=[0,1,0,0,1];
 
 ~and(a,b)
+%% Check file last modified date
+file=dir('aRFIDcobbleLog_20221006.txt');
+datetime(file.date,"Format","dd-MMM-uuuu HH:mm:ss");
+
+a=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','UTC')
+disp('...')
+b=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','America/Los_Angeles')
+
+%%
+nowutc=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];
+a=sscanf(nowutc,'%8dT%6d%');
+
+%%
+timecmp(nowutc,nowutc,1)
+
