@@ -707,17 +707,46 @@ b=[0,1,0,0,1];
 
 ~and(a,b)
 %% Check file last modified date
-file=dir('aRFIDcobbleLog_20221006.txt');
-datetime(file.date,"Format","dd-MMM-uuuu HH:mm:ss");
+filename="aRFIDcobbleLog_20221006.txt";
+if isfile(filename)
+    file=dir(filename);
+else
+    error('Invalid file. Check filename.  Check Directory.')
+end
+filedate=datetime(file.date,"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC')
 
 a=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','UTC')
 disp('...')
 b=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','America/Los_Angeles')
 
 %%
+fprintf('\n\nTEST:\n')
+fprintf('a < b: %s < %s = %d\n',a,b,a<b)
+fprintf('a > b: %s > %s = %d\n',a,b,a>b)
+fprintf('\n')
+hr=0;
+fprintf('a < b+%dhr: %s < %s = %d\n',hr,a,b+duration([hr,0,0]), a<(b+duration([hr,0,0])) )
+fprintf('a > b+%dhr: %s > %s = %d\n',hr,a,b+duration([hr,0,0]), a>(b+duration([hr,0,0])) )
+
+fprintf('a < b-%dhr: %s < %s = %d\n',hr,a,b-duration([hr,0,0]), a<(b-duration([hr,0,0])) )
+fprintf('a > b-%dhr: %s > %s = %d\n',hr,a,b-duration([hr,0,0]), a>(b-duration([hr,0,0])) )
+
+%%
 nowutc=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];
 a=sscanf(nowutc,'%8dT%6d%');
 
-%%
-timecmp(nowutc,nowutc,1)
+%% timecmp Example
+filename="aRFIDcobbleLog_20221006.txt";
+if isfile(filename)
+    file=dir(filename);
+else
+    error('Invalid file. Check filename.  Check Directory.')
+end
+filedate=datetime(file.date,"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC')
+
+a=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','UTC')
+
+timecmp(datestr(filedate,30),datestr(a,30),12,'hours') % negative test
+
+timecmp(datestr(filedate,30),datestr(filedate+0.25,30),12,'hours') % simulate 1/4 day later
 
