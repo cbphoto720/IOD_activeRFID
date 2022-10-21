@@ -4,7 +4,7 @@ function boolean = timecmp(inquire,target,precision,precisionunits)
 %   Optional 'Z' appended to date indicates UTC time
 %% _____ InputParser _____
 p=inputParser;
-expectedtime =@(x) isstring(x) | isdatetime(x); % validateattributes(sscanf(x,'%8dT%6d%'),{'numeric'},{'numel',2,'nonempty'})     -checks ans is a numeric matrix with 2 entries (date and time)
+expectedtime =@(x) isscalar(x) | isdatetime(x); % validateattributes(sscanf(x,'%8dT%6d%'),{'numeric'},{'numel',2,'nonempty'})     -checks ans is a numeric matrix with 2 entries (date and time)
 addRequired(p,'inquire',expectedtime);
 addRequired(p,'target',expectedtime);
 
@@ -18,11 +18,11 @@ addOptional(p,'precisionunits',defaultunits,unitsfcn);
 
 parse(p,inquire,target,precision);
 %% _____ Interpret _____
-ISO8601valid =@(x) validateattributes(sscanf(x,'%8dT%6d%'),{'numeric'},{'numel',2,'nonempty'});
-if isstring(inquire)
+ISO8601valid= @x validateattributes(sscanf(x,'%8dT%6d%'),{'numeric'},{'numel',2,'nonempty'});
+if isscalar(inquire)
     assert(ISO8601valid(inquire),'Datestring is not of valid ISO8601 format')
 end
-if isstring(target)
+if isscalar(target)
     assert(ISO8601valid(target),'Datestring is not of valid ISO8601 format')
 end
 
@@ -50,9 +50,9 @@ elseif precisionunits=="seconds"
 end
 %% _____ Calculate _____
 if time1.dt>time2.dt-bounds
-    boolean=true;
+    disp('inquire is within boundry');
 else
-    boolean=false;
+    disp('False');
 end
 
 end

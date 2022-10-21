@@ -750,3 +750,16 @@ timecmp(datestr(filedate,30),datestr(a,30),12,'hours') % negative test
 
 timecmp(datestr(filedate,30),datestr(filedate+0.25,30),12,'hours') % simulate 1/4 day later
 
+%%
+[filename,path]=uigetfile('*.txt');
+app.prevfile=dir(fullfile(path,filename));
+prevdate=datetime(app.prevfile.date,"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC');
+fprintf('User loaded file: %s\nwhich was last modified on: %s\n',app.prevfile.name,prevdate)
+
+%%
+app2.a=1;
+app2.b=2;
+
+
+[filename,path]=uigetfile('*.txt');
+app2.prevfile=dir(fullfile(path,filename))
