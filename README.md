@@ -10,10 +10,11 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 ###### End Goal
 - arrive at site
 - use manual directional antenna detect initial signal direction
-  - RSII information compiled in GUI to indicate likely RFID position
+  - RSSI information compiled in GUI to indicate likely RFID position
 - walk toward predictions while monitoring RSSI
-- use a physical attenuator during approach to hone in on the closest position of the tag
-- logged cobble will then be ignored on RSSI bar graph and will be added to a log
+- use a signal attenuator during approach to hone in on the position of the tag
+- manually log cobble location
+- Flagged cobble will then be ignored on RSSI bar graph and its coordinates will be added to a log
 - move on to next cobble
 
 # Version Control
@@ -30,12 +31,17 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 ## V2.1
 - GUI overhall
 - Pcolor plot
--
+
+## V2.2
+- previous cobble position implementation
+- more robust time handling
+- datalog import tool
+- Refine GUI layout
 
 
 # Build Information
 - 433 MHz Active RFID
-  - 15m reliable in range (Either inside cobble or bare tag)
+  - 15m reliable range (Either inside cobble or bare tag)
 
 ## Cobble Casting
 ### Materials
@@ -50,7 +56,7 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 #### Global Variables
 *No longer applicable to program.  (Reformat to include timer variables as well as program log outuput)*
 - Timestamp
-- TagID & RSSI (for directional & omni-dir antenna)
+- TagID & RSSI
 - GPS coord
 - Flag cobble (value = TagID# that is being flagged)
 
@@ -134,3 +140,8 @@ The common data format NASA standard in data storage.
 
 **too much data**
 - Checksum (1.4.6) - Data corruption checking.  (CPU intensive)
+
+# References
+- The Scientific colour map lajolla (Crameri 2018) is used in
+this study to prevent visual distortion of the data and exclusion of
+readers with colour-vision deficiencies (Crameri et al., 2020).
