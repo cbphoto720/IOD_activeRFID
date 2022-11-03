@@ -108,6 +108,9 @@ DIY options
 
 
 # Code
+### Publish to Toughpad
+- stop debug mode
+
 ### Markdown
 - [Markdown syntax cheat sheet](https://daringfireball.net/projects/markdown/syntax#img)
 - [Markdown demo 2 (easier to visualize)](https://markdown-it.github.io/)
