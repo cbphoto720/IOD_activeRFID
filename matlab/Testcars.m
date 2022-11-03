@@ -763,3 +763,8 @@ app2.b=2;
 
 [filename,path]=uigetfile('*.txt');
 app2.prevfile=dir(fullfile(path,filename))
+
+%%
+% cd ActiveCobbleData\
+list=ls
+
