@@ -38,6 +38,10 @@ Active cobble RFID tag GUI for detection, mapping, and data-logging.
 - datalog import tool
 - Refine GUI layout
 
+# V2.3
+- bug fixes
+- Increase framerate stability (UItmr BusyMode='drop')
+
 
 # Build Information
 - 433 MHz Active RFID
