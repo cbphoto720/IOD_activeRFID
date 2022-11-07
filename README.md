@@ -110,6 +110,7 @@ DIY options
 # Code
 ### Publish to Toughpad
 - stop debug mode
+- disable addpath string
 
 ### Markdown
 - [Markdown syntax cheat sheet](https://daringfireball.net/projects/markdown/syntax#img)

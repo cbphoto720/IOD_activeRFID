@@ -93,10 +93,10 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
   - pcolor fixed color scale (with colorbar)
   - la jolla color map
   - **! Colorbar is not fixed!  Color is scaling despite limits being set**
-- [ ] antenna plots on same page as GPS
-- [ ] Yagi plt fixed y-axis
-- [ ] import previous cobble positions
-- [ ] midnight rollover handling
+- [x] antenna plots on same page as GPS
+- [x] Yagi plt fixed y-axis
+- [x] import previous cobble positions
+- [x] midnight rollover handling
 
 # App development lessons:
 - K.I.S.S.
@@ -105,6 +105,7 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - default values stored in .txt doc (com ports, display previous cobbles, snail trail timeout, etc..)
   - promotes easily-configurable options
   - streamlines program clarity and Features
-- functions to perform tasks should be external (calculate data first, then run a seperate function that purely displays the information)
+- functions to perform tasks should be external (calculate data first, then run a separate function that purely refreshes UI information)
   - helps with code clarity and lends itself to easier modification
   - also helps with project delegation
+  - helps with debugging -> find where program is hung up
