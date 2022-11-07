@@ -6,7 +6,8 @@
 - portable (handheld)
 
 ## Required materials
-[take inspiration from this picture](https://dl.cdn-anritsu.com/images/products/tm-ma2700a/handheld-interferencehunter-ma2700a-environmental-2.jpg)<br />
+Example RDF system: <br>
+![photo of an example RDF system](https://dl.cdn-anritsu.com/images/products/tm-ma2700a/handheld-interferencehunter-ma2700a-environmental-2.jpg)<br />
 
 ## Toughpad Mounts
 ###### Toughpad chest mount
@@ -33,7 +34,8 @@ Backup chest mount option
 - switchable [attenuator box](https://www.rfparts.com/rfa4056-03.html)
 - [DIY 2.5 GHz pi attenuator](https://youtu.be/A5gGeV7CiQ0?t=547)
   - what type of noise and signal would this introduce?
-  -
+- [$200 Attenuator](https://powerfulsignal.com/top-signal-variable-attenuator-50-ohm-n-female/)(0-15db)
+- [$225 Attenuator](https://www.centricrf.com/attenuators/rotary-switch-attenuators/cr25s30b-push-button-attenuator-30db-2-5ghz/?gclid=CjwKCAjwoMSWBhAdEiwAVJ2ndomZsho6KssulGB4DlcWtCLOOniMxcZkcZ105p1rnw0i5Ns9LQKCoxoCPwkQAvD_BwE)(2-30db)
 
 
 ## Custom antenna

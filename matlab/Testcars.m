@@ -1,10 +1,11 @@
 %% Initialize
 
 clear all
-COM="COM4";
 addpath(genpath('C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID'))
 pause(0.05)
 %% 
+COM="COM4";
+
 % Import tag list
 [fid, msg]=fopen('taglist.txt','r');
 if fid < 0
@@ -454,6 +455,17 @@ sound(s,fs)
 
 plot(s)
 
+%% Sound chime test 2
+dur=0.1;
+[a,~]=playchime(300,dur);
+[b,fs]=playchime(500,dur);
+[c,fs]=playchime(700,dur);
+[d,fs]=playchime(900,dur*0.9);
+
+%% halelujah
+load handel
+sound(y,Fs)
+
 %% Cobble positions.kml _/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\
 
 % _____ Import Previous Positions _____
@@ -515,5 +527,244 @@ app.GPStime=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];;
 cobblelog=[app.GPStime , num2str(20) , num2str(32) , num2str(-117) , "User saved cobble position"];
 writematrix(cobblelog,filename,'Delimiter','tab','WriteMode','append');
 
+%%
 
+%# sample data
+x = 1:100;
+left = randn(100,1);
+% right = cumsum(rand(100,1)-0.5);
+
+%# build axes positions
+hBig = [subplot(121) subplot(122)];         %# create subplots
+posBig = get(hBig, 'Position');             %# record their positions
+delete(hBig)                                %# delete them
+posSmall{1} = [0.275 0.63 0.16 0.24];
+a=0.3;
+posSmall{2} = [0.717 0.13 0.16 0.24];
+
+%# create axes (big/small)
+hAxB(1) = axes('Position',posBig{1});
+hAxB(2) = axes('Position',posBig{2});
+hAxS(1) = axes('Position',posSmall{1});
+hAxS(2) = axes('Position',posSmall{2});
+
+%# plot
+plot(hAxB(1), x, left, 'b');
+plot(hAxB(2), x, right, 'b');
+plot(hAxS(1), x, left, 'r');
+plot(hAxS(2), x, right, 'r');
+
+%# set axes properties
+set(hAxB, 'XLim',[1 100], 'YLim',[-10 10]);
+set(hAxS , 'Color','none', 'XAxisLocation','top', 'YAxisLocation','right');
+set(hAxS , 'Color','b')
+%%
+histogram(hAxS(2),left)
+
+
+%% Scratch paper
+
+a=zeros(45,32)';
+a(1,1)=10;
+b=a;
+b(10,1)=90;
+b(10,6)=120;
+axtest=axes()
+spectrum=pcolor(axtest,a);
+colorbar
+
+%%
+set(spectrum,'CData',b);
+drawnow;
+
+%% YagiRSSI_sample
+clf
+figure(1)
+colormap(flipud(lajolla10))
+
+subplot(211)
+a=[YagiRSSI_sample]';
+% spectrum=pcolor(axtest,a);
+h=pcolor(a)
+% set(h, 'EdgeColor', 'none');
+colorbar
+
+subplot(212)
+a1=[YagiRSSI_sample,zeros(size(YagiRSSI_sample,1),1)]';
+h1=pcolor(a1)
+colorbar
+% set(h1, 'EdgeColor', 'none');
+drawnow
+
+%%
+set(spectrum,'CData',b);
+drawnow;
+
+%% iG8a Serial obj
+
+iG8mssg.SVaquire="$GPGGA,,,,,,,,,,M,,M,,*56";
+iG8mssg.GPS="$GPGGA,220055.00,3252.02728572,N,11715.11190040,W,1,20,0.7,51.133,M,-35.060,M,,*65";
+
+
+%% Input parser
+% https://www.mathworks.com/help/matlab/ref/inputparser.html#d123e752705
+   defaultHeight = 1;
+   defaultUnits = 'inches';
+   defaultShape = 'rectangle';
+   expectedShapes = {'square','rectangle','parallelogram'};
+
+   p = inputParser;
+   validScalarPosNum = @(x) isnumeric(x) && isscalar(x) && (x > 0);
+   addRequired(p,'width',validScalarPosNum);
+   addOptional(p,'height',defaultHeight,validScalarPosNum);
+   addParameter(p,'units',defaultUnits,@isstring);
+   addParameter(p,'shape',defaultShape,...
+                 @(x) any(validatestring(x,expectedShapes)));
+   parse(p,width,varargin{:});
+
+%% ______ ig8aserialread ______
+
+iG8a_serialobj=configureig8aserialread('COM1');
+%%
+outputline=ig8aserialread(iG8a_serialobj)
+
+%% Boolean varialble test
+ gpscords=[4 1; 5 5; 32 23; 24 52; 215 125];
+ len=length(gpscords);
+
+ bools=false(len,1);
+ bools(1)=1;
+ bools(4)=1;
+
+ gpscords(bools,2)
+
+ %% timer wait test
+clc
+
+Atimer=timer('Name','a_timer',...
+                'ExecutionMode','singleShot',...
+                'StartFcn',@(x,y)disp('starting a_timer'),...
+                'StartDelay',5,...
+                'TimerFcn',@(x,y)disp('done with a_timer'));
+start(Atimer)
+wait(Atimer)
+disp('will not execute until we are "done with a_timer"')
+
+%% Read in ARFID datalog
+num=2;
+
+switch num
+    case 1
+        prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220809.txt"); %example
+    case 2
+        prevARFID = readARFIDcobbleLog("C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220919.txt","standard"); % with logged cobbles
+end
+clear num
+
+%%
+[fid, msg]=fopen('taglist.txt','r');
+if fid < 0
+    error('Failed to open file "%s" because: "%s"', filename, msg);
+end
+C = textscan(fid,'%s');
+taglist = hex2dec(C{1}); % aquire tag IDs
+fclose(fid);
+clear C ans fid msg
+
+%% Interpret ARFID deletions
+%interpret file date
+filename="C:\Users\ccblack\Documents\Carson\Projects\IOD_activeRFID\ActiveCobbleData\aRFIDcobbleLog_20220919.txt";
+date=extractAfter(filename,strlength(filename)-12);
+date=char(date);
+date(regexp(date,'[.]txt'):end)=[];
+
+%Preallocate
+out=table('Size',[length(taglist),5],'VariableNames',["UTCtime", "TagID", "Lat", "Lon", "notes"],'VariableTypes',["string", "double", "double", "double", "string"]);
+
+for i=1:length(taglist) % iterate taglist to find last log entry (deletion or flag)
+    ind=find(prevARFID.TagID==taglist(i),1,"last");
+    if isempty(ind) || prevARFID.Lat(ind)==999 %find deletions & missing tags
+        out(i,:)=num2cell(nan(1,5));
+        out.TagID(i)=taglist(i);
+    elseif prevARFID.Lat(ind)<=90 % find flags
+        out(i,:)=prevARFID(ind,:);
+    end
+end
+clear i ind
+out.UTCtime=fillmissing(out.UTCtime,'constant',string(date)); %fill missing dates
+out.notes=fillmissing(out.notes,'constant',""); %fill missing notes
+%%
+
+ [file,path] = uigetfile('*.txt');
+            if isequal(file,0)
+               disp('canceled')
+            else
+               disp(['User selected ', fullfile(path,file)]);
+            end
+%%
+a=[1,0,0,0,1];
+b=[0,1,0,0,1];
+
+~and(a,b)
+%% Check file last modified date
+filename="aRFIDcobbleLog_20221006.txt";
+if isfile(filename)
+    file=dir(filename);
+else
+    error('Invalid file. Check filename.  Check Directory.')
+end
+filedate=datetime(file.date,"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC')
+
+a=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','UTC')
+disp('...')
+b=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','America/Los_Angeles')
+
+%%
+fprintf('\n\nTEST:\n')
+fprintf('a < b: %s < %s = %d\n',a,b,a<b)
+fprintf('a > b: %s > %s = %d\n',a,b,a>b)
+fprintf('\n')
+hr=0;
+fprintf('a < b+%dhr: %s < %s = %d\n',hr,a,b+duration([hr,0,0]), a<(b+duration([hr,0,0])) )
+fprintf('a > b+%dhr: %s > %s = %d\n',hr,a,b+duration([hr,0,0]), a>(b+duration([hr,0,0])) )
+
+fprintf('a < b-%dhr: %s < %s = %d\n',hr,a,b-duration([hr,0,0]), a<(b-duration([hr,0,0])) )
+fprintf('a > b-%dhr: %s > %s = %d\n',hr,a,b-duration([hr,0,0]), a>(b-duration([hr,0,0])) )
+
+%%
+nowutc=[datestr(datetime('now', 'TimeZone','Z'),30),'Z'];
+a=sscanf(nowutc,'%8dT%6d%');
+
+%% timecmp Example
+filename="aRFIDcobbleLog_20221006.txt";
+if isfile(filename)
+    file=dir(filename);
+else
+    error('Invalid file. Check filename.  Check Directory.')
+end
+filedate=datetime(file.date,"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC')
+
+a=datetime('now','Format','uuuuMMdd''T''HHmmss','TimeZone','UTC')
+
+timecmp(datestr(filedate,30),datestr(a,30),12,'hours') % negative test
+
+timecmp(datestr(filedate,30),datestr(filedate+0.25,30),12,'hours') % simulate 1/4 day later
+
+%%
+[filename,path]=uigetfile('*.txt');
+app.prevfile=dir(fullfile(path,filename));
+prevdate=datetime(app.prevfile.date,"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC');
+fprintf('User loaded file: %s\nwhich was last modified on: %s\n',app.prevfile.name,prevdate)
+
+%%
+app2.a=1;
+app2.b=2;
+
+
+[filename,path]=uigetfile('*.txt');
+app2.prevfile=dir(fullfile(path,filename))
+
+%%
+% cd ActiveCobbleData\
+list=ls
 
