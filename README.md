@@ -1,4 +1,3 @@
-
 # IOD_activeRFID
 A GUI to help the user track active RFID tags.  The program will read serial inputs from an iG8a GPS and an ELA SCIEL-READER-LITE for the 433mhz Yagi antenna.  This serial information is parsed and then displayed to the user through a GPS map as well as a variety of signal strength indicators.
 
