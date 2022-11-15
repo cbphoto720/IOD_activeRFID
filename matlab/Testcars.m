@@ -768,3 +768,62 @@ app2.prevfile=dir(fullfile(path,filename))
 % cd ActiveCobbleData\
 list=ls
 
+%% Read GCDC csv
+
+[a.data,a.date]=importGCDCaccelerometer("\DATA-004.CSV")
+
+% a.date=getGCDCstartdate("\DATA-004.CSV")
+
+%%
+datetestdate=datetime(a.date(1),"Format",'uuuuMMdd','TimeZone','UTC');
+
+datetesttime=datetime(a.date(2),"Format",'HHmmss','TimeZone','UTC');
+
+dttest=datetime(datetestdate+timeofday(datetesttime),"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC')
+
+%% Plot GCDC Accelerometer Data
+figure
+subplot(311)
+plot(a.data.Time,a.data.Ax)
+grid on
+subplot(312)
+plot(a.data.Time,a.data.Ay)
+grid on
+subplot(313)
+plot(a.data.Time,a.data.Az)
+grid on
+
+figure
+subplot(211)
+plot([1:length(a.data.Time)],a.data.Ax)
+title('Ax vs Data entry line')
+xlabel('Data Entry #')
+ylabel('Ax')
+subplot(212)
+plot([1:length(a.data.Time)],a.data.Time)
+title('Data Entry row vs logged time')
+xlabel('Data Entry #')
+ylabel('Time')
+
+%% _____ Flag where time is non continuous _____
+flags=[0,0]
+for i=1:length(a.data.Time)
+    if i==1
+        disp('running')
+    else
+        if a.data.Time(i) < a.data.Time(i-1)
+            flags(end+1)=i;
+        end
+    end
+end
+flags(1:2)=[];
+disp('done')
+%% investigate results
+ind=1;
+pad=3;
+a.data(flags(ind)-pad:flags(ind)+pad,:)
+%% time(i)-time(i-1)
+timesubtract=[a.data.Time;0]-[0;a.data.Time];
+flagsubtract=[flags;0]-[0;flags];
+flagsubtract(end)=[];
+histogram(flagsubtract,'NumBins',10)
