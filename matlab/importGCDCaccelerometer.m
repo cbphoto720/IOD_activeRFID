@@ -44,6 +44,6 @@ DATA = readtable(filename, opts);
 timestr = getGCDCstartdate(filename);
 DAY=datetime(timestr(1),"Format",'uuuuMMdd','TimeZone','UTC'); %convert Date to UTC datetime
 TIME=datetime(timestr(2),"Format",'HHmmss','TimeZone','UTC'); %convert time to UTC datetime
-starttime=datetime(DAY+timeofday(TIME),"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC') %add DAY and TIME
+starttime=datetime(DAY+timeofday(TIME),"Format",'uuuuMMdd''T''HHmmss','TimeZone','UTC'); %add DAY and TIME
 
 end
