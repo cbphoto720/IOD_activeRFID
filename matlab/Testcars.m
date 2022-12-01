@@ -768,3 +768,121 @@ app2.prevfile=dir(fullfile(path,filename))
 % cd ActiveCobbleData\
 list=ls
 
+<<<<<<< Updated upstream
+=======
+%% __________ Read GCDC csv __________
+clear all
+clc
+file=uigetfile("MultiSelect","off",'*.csv');
+if file==0
+    disp('please select a file')
+else
+    [a.data,a.date]=importGCDCaccelerometer(file);
+    disp('done importing')  
+end
+
+% Sortrows
+
+% a.date=getGCDCstartdate("\DATA-004.CSV")
+
+%% _____ Plot GCDC Accelerometer Data _____
+close all
+figure(1);
+subplot(311)
+plot(a.data.Time,a.data.Ax)
+grid on
+subplot(312)
+plot(a.data.Time,a.data.Ay)
+grid on
+subplot(313)
+plot(a.data.Time,a.data.Az)
+grid on
+
+f2=figure(2);
+x=[1:length(a.data.Time)];
+
+sgtitle('200 Hz, Dwell disabled')
+subplot(211)
+plot(a.data.Time,a.data.Ay)
+if false % display vertical lines for DATA-006 (linear data)
+    hold on
+    slope=max(a.data.Time)/(length(a.data.Time)*1.0056)
+    plot(x,[(a.data.Time)-slope.*x.']*7000-2000)
+    hold off
+end
+title('Ay vs Time')
+xlabel('Time')
+ylabel('Ax')
+subplot(212)
+plot(x,a.data.Time)
+title('Row # vs Time')
+xlabel('Row #')
+ylabel('Time')
+
+% in-graph Zoom
+if true
+    ax2 = axes('Position',[0.145 0.22 0.2 0.2]);
+    scope=[60:1:320];
+    plot(ax2,x(scope),a.data.Time(scope))
+    ax2.XTickLabel = [];
+    ax2.YTickLabel = [];
+    annotation('arrow',[0.2 0.17], [0.215 0.135])
+end
+f2.Position = [20 50 1200 700];
+
+%% Sortrows
+f3=figure(3);
+b=sortrows(a.data);
+
+subplot 311
+plot(a.data.Time,a.data.Ay)
+title('Raw data (Ay vs time)')
+xlabel('time (s)')
+
+subplot 312
+plot(b.Time,b.Ay)
+title('Ay with ascending timestamp')
+xlabel('time (s)')
+
+subplot 313
+plot([1:length(a.data.Time)],a.data.Ay)
+title('Ay vs Data line #')
+xlabel('Row #')
+
+F3.Position=[0.1300    0.1100    0.7750    0.2130];
+
+
+
+%% _____ Flag where time is non continuous _____
+flags=[0,0]
+for i=1:length(a.data.Time)
+    if i==1
+        disp('running')
+    else
+        if a.data.Time(i) < a.data.Time(i-1)
+            flags(end+1)=i;
+        end
+    end
+end
+flags(1:2)=[];
+disp('done')
+%% investigate results
+ind=1;
+pad=3;
+a.data(flags(ind)-pad:flags(ind)+pad,:)
+%% time(i)-time(i-1)
+timesubtract=[a.data.Time;0]-[0;a.data.Time];
+flagsubtract=[flags;0]-[0;flags];
+flagsubtract(end)=[];
+histogram(flagsubtract,'NumBins',10)
+%%
+a.date+duration([0,0,a.data.Time(end-1)])
+
+
+%%
+
+RTC=["0x05","33","23","01","16","90","22","00","00","00","00","00","00","00","00","00","00","00","00"];
+RTCdeci=hex2dec(RTC)
+
+
+>>>>>>> Stashed changes
