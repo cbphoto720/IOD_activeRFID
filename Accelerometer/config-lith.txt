@@ -1,0 +1,19 @@
+;X16-1D config file
+samplerate = 100
+samplesperfile = 360000
+dwell=1
+deadband=0
+deadbandtimeout=15
+minBattVoltage=2700
+statusindicators = Normal
+;rebootOnDisconnect
+microres
+;samplerate(samples/sec)...set sample rate
+;samplesperfile(samples)...set file size default[360000]
+;deadband(counts)... 100=0.1g (+/-16g range, 32767 resolution) default[100]
+;dwell(samples)...amount of data to log after deadband threshold met default[10]
+;deadbandtimeout(seconds)...min write rate if no movement
+;minBattVoltage(millivolts)...min battery voltage before stopping
+;set status indicator brightness [Off, Normal, High]
+
+
