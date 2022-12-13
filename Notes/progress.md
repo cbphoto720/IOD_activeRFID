@@ -28,14 +28,14 @@
 - [ ] RSSI signal interpretation and thresholds to ensure fast acquisition of data.
   - when communicating with multiple tags, expect delays (NaN values)
   - periodic drops in signal are expected
-  - handle RSSI overfill with a separate timer
+  - handle RSSI overfill with a separate timer (not an issue if tags are far apart)
 - [ ] import coastline
 - [ ] For saving data in the same folder as the installed app (But I think matlab automatic directy path is to where app in launched):
 
 <code>files = matlab.apputil.getInstalledAppInfo;\
 [path,\~,~] = fileparts(files(1).location)</code>
 
-- [ ] midnight rollover handling
+- [x] midnight rollover handling
 
 ##### 1/28/22
 - Work on Antenna data logging and RSSI callback func.  Talk to Brian about caching data for RSSI scatter.
@@ -97,6 +97,20 @@ RSSI graph working.  Updates in GPStmr loop.  Next step is to slow this update &
 - [x] Yagi plt fixed y-axis
 - [x] import previous cobble positions
 - [x] midnight rollover handling
+
+##### 2022-12-12
+- [x] Program accelerometers
+- [ ] set UTC start time
+- [ ] start all devices
+- [ ] cast in rocks
+- [ ] investigate iG8a serial port lag by installing teraterm on toughpad
+- [ ] Ask brian about toughpad battery power
+
+**Extra time**
+- [ ] 3d print antenna handle\
+  **Code:**
+- [ ] closer map zoom options
+- [ ] fix text offeset (based on zoom value)
 
 # App development lessons:
 - K.I.S.S.

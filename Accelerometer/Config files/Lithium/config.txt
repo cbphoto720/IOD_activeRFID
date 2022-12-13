@@ -1,9 +1,9 @@
 ;X16-1D config file
 samplerate = 100
 samplesperfile = 360000
-dwell=1
-deadband=0
-deadbandtimeout=15
+dwell=1000
+deadband=100
+deadbandtimeout=360
 minBattVoltage=2700
 statusindicators = Normal
 ;rebootOnDisconnect
